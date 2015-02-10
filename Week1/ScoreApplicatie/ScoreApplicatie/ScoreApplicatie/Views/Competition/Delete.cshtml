@@ -1,0 +1,26 @@
+﻿@model NMCT.Scores.Models.Score
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Wenst u deze score te verwijderen?</h2>
+
+
+<b>
+    @Html.DisplayFor(m => m.TeamA.Name)
+    @Html.DisplayFor(m => m.ScoreA)
+    -
+    @Html.DisplayFor(m => m.ScoreB)
+    @Html.DisplayFor(m => m.TeamB.Name)
+</b>
+
+<br />
+<br />
+
+@using(Html.BeginForm("Delete", "Competition", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id);
+    <input type="submit" value="Verwijderen" />
+    <input type="button" value="Terug" onclick="history.back(-1)" />
+}

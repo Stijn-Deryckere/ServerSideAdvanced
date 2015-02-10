@@ -1,0 +1,23 @@
+﻿@model ScoreApplicatie.ViewModels.TeamsVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Choose a competition</h2>
+<h3>Competition</h3>
+
+<hr />
+
+@using(Html.BeginForm("Index", "Team", FormMethod.Post))
+{
+    @Html.DropDownListFor(m => m.SelectedCompetition, Model.Competitions)
+    <input type="submit" value="Choose" />
+}
+
+<ul>
+    @foreach(var item in Model.Teams)
+    {
+        <li>@item.Name</li>
+    }
+</ul>

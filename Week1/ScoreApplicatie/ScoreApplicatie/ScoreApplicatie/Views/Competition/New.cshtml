@@ -1,0 +1,40 @@
+﻿@model ScoreApplicatie.ViewModels.AddScoreVM
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Nieuwe score</h2>
+
+@using(Html.BeginForm("New", "Competition", FormMethod.Post))
+{
+    @Html.Label("Team A")
+    <br />
+    @Html.DropDownListFor(m => m.SelectedTeamA, Model.Teams)
+
+    <br />
+    <br />
+    
+    @Html.Label("Score Team A")
+    <br />
+    @Html.TextBoxFor(m => m.ScoreA)
+
+    <br />
+    <br />
+    
+    @Html.Label("Team B")
+    <br />
+    @Html.DropDownListFor(m => m.SelectedTeamB, Model.Teams)
+
+    <br />
+    <br />
+    
+    @Html.Label("Score Team B")
+    <br />
+    @Html.TextBoxFor(m => m.ScoreB)
+
+    <br />
+    <br />
+    @Html.HiddenFor(m => m.CompetitionId)
+    <input type="submit" value="Toevoegen" />
+}
