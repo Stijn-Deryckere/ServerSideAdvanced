@@ -10,7 +10,10 @@ namespace Week2Oefening1.ViewModels
     public class DeviceVM
     {
         public Device NewDevice { get; set; }
+        public int[] NewOperatingSystems { get; set; }
         public SelectList OperatingSystems { get; set; }
+        public int[] NewFrameworks { get; set; }
         public SelectList Frameworks { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

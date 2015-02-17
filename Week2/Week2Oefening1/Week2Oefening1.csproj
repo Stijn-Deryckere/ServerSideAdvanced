@@ -210,6 +210,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\ARD-ADK-REV3-1-800x533.jpg" />
     <Content Include="Images\ARD-ESPLORA-1-800x533.jpg" />
+    <Content Include="Images\ARD-STARTER-KIT-1-420x280.jpg" />
     <Content Include="Images\RPF-RP2B1GB-2-800x533.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -266,6 +267,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Catalog\Index.cshtml" />
     <Content Include="Views\Catalog\Detail.cshtml" />
+    <Content Include="Views\Catalog\Add.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -15,5 +15,14 @@ namespace Week2Oefening1.Models.DAL
                 return query.ToList<Framework>();
             }
         }
+
+        public static Framework Get(int id)
+        {
+            using(ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var query = (from f in context.Frameworks where f.Id == id select f);
+                return query.SingleOrDefault<Framework>();
+            }
+        }
     }
 }

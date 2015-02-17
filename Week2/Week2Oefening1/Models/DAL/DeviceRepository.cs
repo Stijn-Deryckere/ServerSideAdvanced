@@ -25,5 +25,20 @@ namespace Week2Oefening1.Models.DAL
                 return query.SingleOrDefault<Device>();
             }
         }
+
+        public static void Post(Device device)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                foreach (OS os in device.DeviceOS)
+                    context.Entry<OS>(os).State = EntityState.Unchanged;
+
+                foreach (Framework fw in device.DeviceFramework)
+                    context.Entry<Framework>(fw).State = EntityState.Unchanged;
+
+                context.Devices.Add(device);
+                context.SaveChanges();
+            }
+        }
     }
 }
