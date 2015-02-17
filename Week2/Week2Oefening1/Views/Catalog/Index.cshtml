@@ -1,0 +1,15 @@
+﻿@model List<Week2Oefening1.Models.Device>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@foreach(var device in Model)
+{
+    <article>
+        <h2>@device.Name</h2>
+        <p>@device.Description</p>
+        <a href="Detail/@device.Id">Meer info >></a>
+    </article>
+}
+
