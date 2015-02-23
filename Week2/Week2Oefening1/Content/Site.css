@@ -45,3 +45,61 @@ textarea {
 {
     margin-bottom: 25px;
 }
+
+.navbar
+{
+    background-color: #7f8c8d;
+    border-width: 0px;
+}
+
+.nav li a
+{
+    color: #ffffff !important;
+}
+
+.navbar-brand
+{
+    color: #ffffff !important;
+}
+
+.product
+{
+    padding: 30px;
+}
+
+.product-detail h2
+{
+    text-align: center;
+}
+
+.product-detail img
+{
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.product-detail aside
+{
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product-detail aside p
+{
+    font-weight: bold;
+}
+
+.product-detail aside ul li
+{
+    font-style: italic;
+}
+
+.home-link
+{
+    display: inline-block;
+    margin-top: 50px;
+}

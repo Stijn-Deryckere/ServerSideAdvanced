@@ -4,23 +4,27 @@
     ViewBag.Title = "Detail";
 }
 
-<article>
+<article class="product-detail">
     @{
     String[] modelParts = Model.Name.Split('-');
     }
     <h2>@modelParts[0]</h2>
     <img src="~/Images/@Model.Image" />
-    <p>Model:</p>
-    <ul>
-        <li>@Model.Name</li>
-    </ul>
-    <p>Huur mij voor:</p>
-    <ul>
-        <li>@Model.RentingPrice</li>
-    </ul>
-    <p>Stock te verhuren:</p>
-    <ul>
-        <li>@Model.Stock</li>
-    </ul>
+    <aside>
+        <p>Model:</p>
+        <ul>
+            <li>@Model.Name</li>
+        </ul>
+        <p>Huur mij voor:</p>
+        <ul>
+            <li>@Model.RentingPrice</li>
+        </ul>
+        <p>Stock te verhuren:</p>
+        <ul>
+            <li>@Model.Stock</li>
+        </ul>
+        <a class="home-link" href="/Catalog/">Terug naar overzicht >></a>
+    </aside>
 </article>
+
 
