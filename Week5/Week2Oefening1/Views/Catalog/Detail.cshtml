@@ -1,0 +1,34 @@
+﻿@model Week2Oefening1.ViewModels.BasketItemVM
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<article class="product-detail">
+    @{
+    String[] modelParts = Model.NewDevice.Name.Split('-');
+    }
+    <h2>@modelParts[0]</h2>
+    <img src="https://internetofthingswebshop.blob.core.windows.net/images/@Model.NewDevice.Image" />
+    <aside>
+        <p>Model:</p>
+        <ul>
+            <li>@Model.NewDevice.Name</li>
+        </ul>
+        <p>Huur mij voor:</p>
+        <ul>
+            <li>@Model.NewDevice.RentingPrice</li>
+        </ul>
+        <p>Stock te verhuren:</p>
+        <ul>
+            <li>@Model.NewDevice.Stock</li>
+        </ul>
+        <a class="home-link" href="/Catalog/">Terug naar overzicht >></a>
+    </aside>
+    @if(User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("rentPartial", Model.NewBasketItem)
+    }
+</article>
+
+

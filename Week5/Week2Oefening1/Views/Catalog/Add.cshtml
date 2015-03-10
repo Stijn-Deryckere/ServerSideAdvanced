@@ -1,0 +1,46 @@
+﻿@model Week2Oefening1.ViewModels.DeviceVM
+
+@{
+    ViewBag.Title = "Add";
+}
+
+@using (Html.BeginForm("Add", "Catalog", FormMethod.Post, new { @class = "form" , @enctype = "multipart/form-data"}))
+{
+    <h2>General</h2>
+    
+    @Html.LabelFor(m => m.NewDevice.Name)
+    @Html.EditorFor(m => m.NewDevice.Name)
+    @Html.ValidationMessageFor(m => m.NewDevice.Name)
+
+    @Html.LabelFor(m => m.NewDevice.Description)
+    @Html.EditorFor(m => m.NewDevice.Description)
+    @Html.ValidationMessageFor(m => m.NewDevice.Description)
+
+    @Html.LabelFor(m => m.NewDevice.PurchasePrice)
+    @Html.EditorFor(m => m.NewDevice.PurchasePrice)
+    @Html.ValidationMessageFor(m => m.NewDevice.PurchasePrice)
+
+    @Html.LabelFor(m => m.NewDevice.RentingPrice)
+    @Html.EditorFor(m => m.NewDevice.RentingPrice)
+    @Html.ValidationMessageFor(m => m.NewDevice.RentingPrice)
+
+    @Html.LabelFor(m => m.NewDevice.Stock)
+    @Html.EditorFor(m => m.NewDevice.Stock)
+    @Html.ValidationMessageFor(m => m.NewDevice.Stock)
+    
+    @Html.LabelFor(m => m.NewDevice.Image)
+    @Html.TextBoxFor(m => m.ImageFile, new { type = "file" })
+    @Html.ValidationMessageFor(m => m.ImageFile)
+    
+    <h2>Software</h2>
+    @Html.LabelFor(m => m.NewDevice.DeviceOS)
+    @Html.ListBoxFor(m => m.NewOperatingSystems, Model.OperatingSystems)
+    @Html.ValidationMessageFor(m => m.NewDevice.DeviceOS)
+    
+    @Html.LabelFor(m => m.NewDevice.DeviceFramework)
+    @Html.ListBoxFor(m => m.NewFrameworks, Model.Frameworks)
+    @Html.ValidationMessageFor(m => m.NewDevice.DeviceFramework)
+    
+    <input type="submit" value="Submit" />
+}
+
