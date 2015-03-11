@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Week2Oefening1.Models
 {
-    public class BasketItemCountPrice
+    public class ItemCountPrice
     {
-        public Dictionary<int, Device> DeviceAmounts { get; set; }
+        public List<IItemProduct> DeviceAmounts { get; set; }
 
         private double _totalPrice;
         public double TotalPrice
@@ -20,16 +20,16 @@ namespace Week2Oefening1.Models
             set { _totalPrice = value; }
         }
 
-        public BasketItemCountPrice()
+        public ItemCountPrice()
         {
-            this.DeviceAmounts = new Dictionary<int, Device>();
+            this.DeviceAmounts = new List<IItemProduct>();
         }
 
         private void CalculateTotalPrice()
         {
-            foreach(KeyValuePair<int, Device> deviceAmount in DeviceAmounts)
+            foreach(IItemProduct deviceAmount in DeviceAmounts)
             {
-                this._totalPrice += deviceAmount.Key * deviceAmount.Value.RentingPrice;
+                this._totalPrice += deviceAmount.Amount * deviceAmount.RentDevice.RentingPrice;
             }
         }
     }

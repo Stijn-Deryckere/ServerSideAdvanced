@@ -1,4 +1,4 @@
-﻿@model Week2Oefening1.Models.BasketItemCountPrice
+﻿@model Week2Oefening1.Models.ItemCountPrice
 
 @{
     ViewBag.Title = "Index";
@@ -15,14 +15,15 @@
     </tr>
     @foreach(var item in Model.DeviceAmounts)
     {
-        double price = item.Key * item.Value.RentingPrice;
+        double price = item.Amount * item.RentDevice.RentingPrice;
         <tr>
-            <td>@item.Value.Name</td>
-            <td>@item.Value.RentingPrice</td>
-            <td>@item.Key</td>
+            <td>@item.RentDevice.Name</td>
+            <td>€@item.RentDevice.RentingPrice</td>
+            <td>@item.Amount</td>
             <td>€@price</td>
         </tr>
     }
 </table>
 <p><strong>Total price: €@Model.TotalPrice</strong></p>
-<a class="home-link" href="/Catalog/">Terug naar overzicht >></a>
+<a class="btn btn-success" href="/Basket/Checkout">Checkout</a>
+<a class="btn btn-info" href="/Catalog/">Back to list</a>

@@ -12,14 +12,14 @@
             <article class="col-md-4 product">
                 <h2>@Model[i].Name</h2>
                 <p>@Model[i].Description</p>
-                <a href="/Catalog/Detail/@Model[i].Id">Meer info >></a>
+                <a class="btn btn-info" href="/Catalog/Detail/@Model[i].Id">More info</a>
             </article>
             @if (i + 1 < Model.Count)
             {
                 <article class="col-md-4 product">
                     <h2>@Model[i + 1].Name</h2>
                     <p>@Model[i + 1].Description</p>
-                    <a href="/Catalog/Detail/@Model[i+1].Id">Meer info >></a>
+                    <a class="btn btn-info" href="/Catalog/Detail/@Model[i+1].Id">More info</a>
                 </article>
             }
             
@@ -28,7 +28,7 @@
                 <article class="col-md-4 product product-left">
                     <h2>@Model[i + 2].Name</h2>
                     <p>@Model[i + 2].Description</p>
-                    <a href="/Catalog/Detail/@Model[i +2].Id">Meer info >></a>
+                    <a class="btn btn-info" href="/Catalog/Detail/@Model[i +2].Id">More info</a>
                 </article>
             }
         </div>

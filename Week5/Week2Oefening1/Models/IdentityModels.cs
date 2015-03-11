@@ -30,8 +30,9 @@ namespace Week2Oefening1.Models
         public DbSet<Device> Devices { get; set; }
         public DbSet<OS> OperatingSystems { get; set; }
         public DbSet<Framework> Frameworks { get; set; }
-
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

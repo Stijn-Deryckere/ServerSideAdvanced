@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Week2Oefening1.Models
 {
-    public class BasketItem
+    public class BasketItem : IItemProduct
     {
         public int Id { get; set; }
         public DateTime Timestamp { get; set; }

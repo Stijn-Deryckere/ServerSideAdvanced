@@ -3,7 +3,7 @@ namespace Week2Oefening1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Update : DbMigration
+    public partial class UpdateDB20150311 : DbMigration
     {
         public override void Up()
         {
@@ -121,6 +121,36 @@ namespace Week2Oefening1.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.OrderLines",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Amount = c.Int(nullable: false),
+                        RentingPrice = c.Double(nullable: false),
+                        RentDevice_Id = c.Int(),
+                        Order_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Devices", t => t.RentDevice_Id)
+                .ForeignKey("dbo.Orders", t => t.Order_Id)
+                .Index(t => t.RentDevice_Id)
+                .Index(t => t.Order_Id);
+            
+            CreateTable(
+                "dbo.Orders",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Timestamp = c.DateTime(nullable: false),
+                        IsPaid = c.Boolean(nullable: false),
+                        TotalPrice = c.Double(nullable: false),
+                        User_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
+                .Index(t => t.User_Id);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -161,6 +191,9 @@ namespace Week2Oefening1.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Orders", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.OrderLines", "Order_Id", "dbo.Orders");
+            DropForeignKey("dbo.OrderLines", "RentDevice_Id", "dbo.Devices");
             DropForeignKey("dbo.BasketItems", "RentUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
@@ -175,6 +208,9 @@ namespace Week2Oefening1.Migrations
             DropIndex("dbo.FrameworkDevices", new[] { "Device_Id" });
             DropIndex("dbo.FrameworkDevices", new[] { "Framework_Id" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Orders", new[] { "User_Id" });
+            DropIndex("dbo.OrderLines", new[] { "Order_Id" });
+            DropIndex("dbo.OrderLines", new[] { "RentDevice_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -185,6 +221,8 @@ namespace Week2Oefening1.Migrations
             DropTable("dbo.OSDevices");
             DropTable("dbo.FrameworkDevices");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Orders");
+            DropTable("dbo.OrderLines");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

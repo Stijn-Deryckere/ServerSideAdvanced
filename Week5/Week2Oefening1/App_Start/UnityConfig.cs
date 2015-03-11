@@ -18,8 +18,10 @@ namespace Week2Oefening1
             container.RegisterType<IGenericRepository<OS>, GenericRepository<OS>>();
             container.RegisterType<IDeviceRepository, DeviceRepository>();
             container.RegisterType<IBasketItemRepository, BasketItemRepository>();
+            container.RegisterType<IOrderRepository, OrderRepository>();
             container.RegisterType<IDeviceService, DeviceService>();
             container.RegisterType<IBasketItemService, BasketItemService>();
+            container.RegisterType<IOrderService, OrderService>();
 
 
             container.RegisterType<AccountController>(new InjectionConstructor());

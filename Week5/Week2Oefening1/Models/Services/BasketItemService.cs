@@ -39,12 +39,12 @@ namespace Week2Oefening1.Models.Services
         /*
          * BasketItemCountPrice
          */
-        public BasketItemCountPrice GetBasketItemCountPrice(IEnumerable<BasketItem> basketItems)
+        public ItemCountPrice GetBasketItemCountPrice(IEnumerable<BasketItem> basketItems)
         {
-            BasketItemCountPrice basketItemCountPrice = new BasketItemCountPrice();
+            ItemCountPrice basketItemCountPrice = new ItemCountPrice();
             foreach(BasketItem basketItem in basketItems)
             {
-                basketItemCountPrice.DeviceAmounts.Add(basketItem.Amount, basketItem.RentDevice);
+                basketItemCountPrice.DeviceAmounts.Add(basketItem);
             }
 
             return basketItemCountPrice;

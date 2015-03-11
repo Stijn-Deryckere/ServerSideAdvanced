@@ -31,7 +31,7 @@ namespace Week2Oefening1.Models.DAL
 
         public IEnumerable<BasketItem> AllOfUser(String id)
         {
-            var query = from b in this.context.BasketItems.Include(d => d.RentDevice).Include(u => u.RentUser) where b.RentUser.Id == id select b;
+            var query = from b in this.context.BasketItems.Include(d => d.RentDevice).Include(u => u.RentUser) where b.RentUser.Id == id && b.IsDeleted == false select b;
             return query;
         }
     }

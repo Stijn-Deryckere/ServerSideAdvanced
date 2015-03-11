@@ -1,15 +1,17 @@
 ﻿@model Week2Oefening1.Models.BasketItem
 
 <article class="product-detail">
-    <h2>Huur dit product</h2>
+    <h2>Rent this product</h2>
     @using (Html.BeginForm("rent", "catalog", FormMethod.Post, new { @class = "form", @enctype = "multipart/form-data" }))
     {
-        @Html.Label("Aantal te huren")
-        @Html.EditorFor(m => m.Amount)
-        @Html.ValidationMessageFor(m => m.Amount)
-        
+        <div class="form-group">
+            @Html.LabelFor(m => m.Amount)
+            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Amount)
+        </div>
+
         @Html.HiddenFor(m => m.RentDevice.Id)
 
-        <input type="submit" value="Add to basket" />
+        <input class="btn btn-success" type="submit" value="Add to basket" />
     }
 </article>
