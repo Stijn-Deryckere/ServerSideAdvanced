@@ -11,7 +11,7 @@ using Microsoft.WindowsAzure;
 
 namespace Week2Oefening1.Models.Services
 {
-    public class OrderService : Week2Oefening1.Models.Services.IOrderService
+    public class OrderService : Week2Oefening1.BusinessLayer.Services.IOrderService 
     {
         private IOrderRepository repoOrder = null;
 
@@ -63,6 +63,11 @@ namespace Week2Oefening1.Models.Services
 
             //return repoOrder.Insert(order);
             return order;
+        }
+
+        public Order AddOrderToDatabase(Order order)
+        {
+            return repoOrder.Insert(order);
         }
 
         public Order MakeOrder(IEnumerable<BasketItem> basketItems)

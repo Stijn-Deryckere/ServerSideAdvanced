@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Week2Oefening1.BusinessLayer.Context;
 
 namespace Week2Oefening1.Models.DAL
 {

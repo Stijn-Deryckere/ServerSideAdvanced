@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Week2Oefening1.Models;
+using Week2Oefening1.BusinessLayer.Context;
 
 namespace Week2Oefening1
 {

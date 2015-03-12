@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using Week2Oefening1.BusinessLayer.Context;
 
 namespace Week2Oefening1.Models.DAL
 {
@@ -37,7 +38,14 @@ namespace Week2Oefening1.Models.DAL
 
             this.context.Orders.Add(entity);
 
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
 
             return entity;
         }

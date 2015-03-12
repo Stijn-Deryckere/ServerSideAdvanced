@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Week2Oefening1.Models;
+using Week2Oefening1.BusinessLayer.Context;
 
 namespace Week2Oefening1
 {

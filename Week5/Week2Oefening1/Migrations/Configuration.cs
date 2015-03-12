@@ -8,16 +8,17 @@ namespace Week2Oefening1.Migrations
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
+    using Week2Oefening1.BusinessLayer.Context;
     using Week2Oefening1.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Week2Oefening1.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Week2Oefening1.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             List<OS> operatingSystems = ReadOperatingSystems();
             List<Framework> frameworks = ReadFrameworks();
@@ -82,7 +83,7 @@ namespace Week2Oefening1.Migrations
             return frameworks;
         }
 
-        private List<Device> ReadDevices(Week2Oefening1.Models.ApplicationDbContext context)
+        private List<Device> ReadDevices(ApplicationDbContext context)
         {
             String filepath = AppDomain.CurrentDomain.BaseDirectory + "/../App_Data/Data/Devices.txt";
             StreamReader osr = new StreamReader(filepath);
@@ -110,7 +111,7 @@ namespace Week2Oefening1.Migrations
             return devices;
         }
 
-        private List<OS> GetDeviceOS(Week2Oefening1.Models.ApplicationDbContext context, String part)
+        private List<OS> GetDeviceOS(ApplicationDbContext context, String part)
         {
             String[] parts = part.Split('-');
             List<OS> operatingSystems = new List<OS>();
@@ -124,7 +125,7 @@ namespace Week2Oefening1.Migrations
             return operatingSystems;
         }
 
-        private List<Framework> GetFrameworkOS(Week2Oefening1.Models.ApplicationDbContext context, String part)
+        private List<Framework> GetFrameworkOS(ApplicationDbContext context, String part)
         {
             String[] parts = part.Split('-');
             List<Framework> frameworks = new List<Framework>();
@@ -138,7 +139,7 @@ namespace Week2Oefening1.Migrations
             return frameworks;
         }
 
-        private void AddRoles(Week2Oefening1.Models.ApplicationDbContext context)
+        private void AddRoles(ApplicationDbContext context)
         {
             String adminRole = "Administrator";
             String userRole = "User";

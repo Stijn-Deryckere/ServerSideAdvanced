@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Week2Oefening1.BusinessLayer.Context;
+using Week2Oefening1.BusinessLayer.Services;
 using Week2Oefening1.Models;
 using Week2Oefening1.Models.Services;
 
