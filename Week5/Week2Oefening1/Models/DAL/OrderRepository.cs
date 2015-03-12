@@ -31,11 +31,11 @@ namespace Week2Oefening1.Models.DAL
 
             foreach (OrderLine line in entity.OrderLines)
             {
-                //this.context.Entry<Device>(line.RentDevice).State = EntityState.Unchanged;
+                this.context.Entry<Device>(line.RentDevice).State = EntityState.Unchanged;
                 this.context.OrderLines.Add(line);
             }
 
-            //this.context.Orders.Add(entity);
+            this.context.Orders.Add(entity);
 
             context.SaveChanges();
 

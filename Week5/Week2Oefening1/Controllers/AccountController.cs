@@ -79,7 +79,10 @@ namespace Week2Oefening1.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    if (returnUrl != null)
+                        return RedirectToLocal(returnUrl);
+                    else
+                        return RedirectToAction("Index", "Catalog");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

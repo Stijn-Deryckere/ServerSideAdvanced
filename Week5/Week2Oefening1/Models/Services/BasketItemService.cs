@@ -6,7 +6,7 @@ using Week2Oefening1.Models.DAL;
 
 namespace Week2Oefening1.Models.Services
 {
-    public class BasketItemService : Week2Oefening1.Models.Services.IBasketItemService 
+    public class BasketItemService : Week2Oefening1.Models.Services.IBasketItemService
     {
         private IBasketItemRepository repoBasketItem = null;
 
@@ -34,6 +34,12 @@ namespace Week2Oefening1.Models.Services
         public IEnumerable<BasketItem> AllBasketItemsOfUser(String id)
         {
             return repoBasketItem.AllOfUser(id);
+        }
+
+        public void DeleteBasketItems(IEnumerable<BasketItem> basketItems)
+        {
+            foreach(BasketItem basketItem in basketItems)
+                repoBasketItem.Delete(basketItem);
         }
 
         /*

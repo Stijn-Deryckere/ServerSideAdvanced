@@ -16,12 +16,14 @@ namespace Week2Oefening1.Controllers
         private IDeviceService devService = null;
         private IBasketItemService basketItemService = null;
         private IOrderService orderService = null;
+        private IUserService userService = null;
 
-        public BasketController(IDeviceService devService, IBasketItemService basketItemService, IOrderService orderService)
+        public BasketController(IDeviceService devService, IBasketItemService basketItemService, IOrderService orderService, IUserService userService)
         {
             this.devService = devService;
             this.basketItemService = basketItemService;
             this.orderService = orderService;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -69,18 +71,14 @@ namespace Week2Oefening1.Controllers
         [HttpPost]
         public ActionResult FinalCheckOut(Order order)
         {
-            //Get user. 
-            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            var userManager = new UserManager<ApplicationUser>(store);
-            ApplicationUser user = userManager.FindByNameAsync(User.Identity.Name).Result;
-            store.Context.Dispose();
+            order.User = userService.UserByName(User.Identity.Name);
 
-            order.User = user;
-
-            List<BasketItem> basketItems = basketItemService.AllBasketItemsOfUser(order.User.Id).ToList<BasketItem>();
-            Order finalOrder = orderService.MakeOrder(basketItems);
+            List<BasketItem> basketItems1 = basketItemService.AllBasketItemsOfUser(order.User.Id).ToList<BasketItem>();
+            Order finalOrder = orderService.MakeOrder(basketItems1, order);
 
             orderService.AddOrder(finalOrder);
+            List<BasketItem> basketItems2 = basketItemService.AllBasketItemsOfUser(order.User.Id).ToList<BasketItem>();
+            basketItemService.DeleteBasketItems(basketItems2);
 
             return RedirectToAction("Index");
         }

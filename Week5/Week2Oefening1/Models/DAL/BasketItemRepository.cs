@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace Week2Oefening1.Models.DAL
 {
-    public class BasketItemRepository : GenericRepository<BasketItem>, IBasketItemRepository
+    public class BasketItemRepository : GenericRepository<BasketItem>, Week2Oefening1.Models.DAL.IBasketItemRepository
     {
         public BasketItemRepository() 
         { }
@@ -31,8 +31,15 @@ namespace Week2Oefening1.Models.DAL
 
         public IEnumerable<BasketItem> AllOfUser(String id)
         {
-            var query = from b in this.context.BasketItems.Include(d => d.RentDevice).Include(u => u.RentUser) where b.RentUser.Id == id && b.IsDeleted == false select b;
+            var query = from b in this.context.BasketItems.AsNoTracking<BasketItem>().Include(d => d.RentDevice).Include(u => u.RentUser) where b.RentUser.Id == id && b.IsDeleted == false select b;
             return query;
+        }
+
+        public override void Delete(BasketItem entityToDelete)
+        {
+            entityToDelete.IsDeleted = true;
+            this.context.Entry<BasketItem>(entityToDelete).State = EntityState.Modified;
+            this.context.SaveChanges();
         }
     }
 }

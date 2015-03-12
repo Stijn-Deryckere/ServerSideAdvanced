@@ -231,24 +231,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503111646089_UpdateDB20150311.cs" />
-    <Compile Include="Migrations\201503111646089_UpdateDB20150311.Designer.cs">
-      <DependentUpon>201503111646089_UpdateDB20150311.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503111748556_UpdateDB20150311b.cs" />
-    <Compile Include="Migrations\201503111748556_UpdateDB20150311b.Designer.cs">
-      <DependentUpon>201503111748556_UpdateDB20150311b.cs</DependentUpon>
+    <Compile Include="Migrations\201503121734365_UpdateDB20150312.cs" />
+    <Compile Include="Migrations\201503121734365_UpdateDB20150312.Designer.cs">
+      <DependentUpon>201503121734365_UpdateDB20150312.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BasketItem.cs" />
+    <Compile Include="Models\DAL\IBasketItemRepository.cs" />
     <Compile Include="Models\DAL\IOrderRepository.cs" />
+    <Compile Include="Models\DAL\IUserRepository.cs" />
+    <Compile Include="Models\DAL\UserRepository.cs" />
     <Compile Include="Models\IItemProduct.cs" />
     <Compile Include="Models\ItemCountPrice.cs" />
     <Compile Include="Models\DAL\BasketItemRepository.cs" />
     <Compile Include="Models\DAL\DeviceRepository.cs" />
     <Compile Include="Models\DAL\GenericRepository.cs" />
-    <Compile Include="Models\DAL\IBasketItemRepository.cs" />
     <Compile Include="Models\DAL\IDeviceRepository.cs" />
     <Compile Include="Models\DAL\IGenericRepository.cs" />
     <Compile Include="Models\DAL\OrderRepository.cs" />
@@ -264,7 +262,9 @@
     <Compile Include="Models\Services\IBasketItemService.cs" />
     <Compile Include="Models\Services\IDeviceService.cs" />
     <Compile Include="Models\Services\IOrderService.cs" />
+    <Compile Include="Models\Services\IUserService.cs" />
     <Compile Include="Models\Services\OrderService.cs" />
+    <Compile Include="Models\Services\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -363,11 +363,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503111646089_UpdateDB20150311.resx">
-      <DependentUpon>201503111646089_UpdateDB20150311.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503111748556_UpdateDB20150311b.resx">
-      <DependentUpon>201503111748556_UpdateDB20150311b.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503121734365_UpdateDB20150312.resx">
+      <DependentUpon>201503121734365_UpdateDB20150312.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@ namespace Week2Oefening1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UpdateDB20150311 : DbMigration
+    public partial class UpdateDB20150312 : DbMigration
     {
         public override void Up()
         {
@@ -143,7 +143,13 @@ namespace Week2Oefening1.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Timestamp = c.DateTime(nullable: false),
                         IsPaid = c.Boolean(nullable: false),
+                        IsDelivered = c.Boolean(nullable: false),
                         TotalPrice = c.Double(nullable: false),
+                        Name = c.String(),
+                        FirstName = c.String(),
+                        Address = c.String(),
+                        City = c.String(),
+                        Zipcode = c.String(),
                         User_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
