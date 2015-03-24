@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Week2Oefening1.BusinessLayer.Repositories;
 using Week2Oefening1.Models.DAL;
 
 namespace Week2Oefening1.Models.Services
 {
-    public class BasketItemService : Week2Oefening1.Models.Services.IBasketItemService
+    public class BasketItemService : Week2Oefening1.BusinessLayer.Services.IBasketItemService
     {
         private IBasketItemRepository repoBasketItem = null;
 
@@ -40,6 +41,16 @@ namespace Week2Oefening1.Models.Services
         {
             foreach(BasketItem basketItem in basketItems)
                 repoBasketItem.Delete(basketItem);
+        }
+
+        public void UpdateBasketItem(BasketItem basketItem)
+        {
+            repoBasketItem.Update(basketItem);
+        }
+
+        public BasketItem AllBasketItemsOfUserAndDevice(ApplicationUser user, Device device)
+        {
+            return repoBasketItem.AllOfUserAndDevice(user, device);
         }
 
         /*

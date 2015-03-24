@@ -6,6 +6,7 @@ using Week2Oefening1.Models.DAL;
 using Week2Oefening1.Models.Services;
 using Week2Oefening1.Controllers;
 using Week2Oefening1.BusinessLayer.Services;
+using Week2Oefening1.BusinessLayer.Repositories;
 
 namespace Week2Oefening1
 {

@@ -246,8 +246,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\BasketItemVM.cs" />
-    <Compile Include="ViewModels\DeviceVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Data\Devices.txt" />

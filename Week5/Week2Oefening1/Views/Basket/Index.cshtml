@@ -19,7 +19,14 @@
         <tr>
             <td>@item.RentDevice.Name</td>
             <td>€@item.RentDevice.RentingPrice</td>
-            <td>@item.Amount</td>
+            <td>
+                @using(Html.BeginForm("Index", "Basket", FormMethod.Post))
+                {
+                    <input type="hidden" name="id" value="@item.RentDevice.Id" />
+                    <input type="text" name="amount" value="@item.Amount" />
+                    <input type="submit" class="btn btn-info" value="Wijzigen" />
+                }
+            </td>
             <td>€@price</td>
         </tr>
     }

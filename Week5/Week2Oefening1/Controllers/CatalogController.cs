@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Week2Oefening1.BusinessLayer.Context;
+using Week2Oefening1.BusinessLayer.Services;
 using Week2Oefening1.Models;
 using Week2Oefening1.Models.DAL;
 using Week2Oefening1.Models.Services;
@@ -103,6 +104,15 @@ namespace Week2Oefening1.Controllers
             ApplicationUser user = userManager.FindByNameAsync(User.Identity.Name).Result;
             basketItem.RentUser = user;
             store.Context.Dispose();
+
+            //Check if user has this item already in his basket.
+            BasketItem userDeviceBasketItem = basketItemServ.AllBasketItemsOfUserAndDevice(user, device);
+            if(userDeviceBasketItem != null)
+            {
+                userDeviceBasketItem.Amount += basketItem.Amount;
+                basketItemServ.UpdateBasketItem(userDeviceBasketItem);
+                return RedirectToAction("Index");
+            }
 
             basketItem.Timestamp = DateTime.Now;
             basketItem.IsDeleted = false;

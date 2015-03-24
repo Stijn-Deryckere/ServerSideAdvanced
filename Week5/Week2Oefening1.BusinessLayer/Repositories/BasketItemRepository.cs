@@ -7,7 +7,7 @@ using Week2Oefening1.BusinessLayer.Context;
 
 namespace Week2Oefening1.Models.DAL
 {
-    public class BasketItemRepository : GenericRepository<BasketItem>, Week2Oefening1.Models.DAL.IBasketItemRepository
+    public class BasketItemRepository : GenericRepository<BasketItem>, Week2Oefening1.BusinessLayer.Repositories.IBasketItemRepository
     {
         public BasketItemRepository() 
         { }
@@ -41,6 +41,21 @@ namespace Week2Oefening1.Models.DAL
             entityToDelete.IsDeleted = true;
             this.context.Entry<BasketItem>(entityToDelete).State = EntityState.Modified;
             this.context.SaveChanges();
+        }
+
+        public override void Update(BasketItem entityToUpdate)
+        {
+            this.context.Entry<ApplicationUser>(entityToUpdate.RentUser).State = EntityState.Unchanged;
+            this.context.Entry<Device>(entityToUpdate.RentDevice).State = EntityState.Unchanged;
+            this.context.Entry<BasketItem>(entityToUpdate).State = EntityState.Modified;
+
+            this.context.SaveChanges();
+        }
+
+        public BasketItem AllOfUserAndDevice(ApplicationUser user, Device device)
+        {
+            var query = from b in this.context.BasketItems.AsNoTracking<BasketItem>().Include(d => d.RentDevice).Include(u => u.RentUser) where b.RentUser.Id == user.Id && b.IsDeleted == false && b.RentDevice.Id == device.Id select b;
+            return query.SingleOrDefault<BasketItem>();
         }
     }
 }

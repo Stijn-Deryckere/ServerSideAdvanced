@@ -100,6 +100,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Week2Oefening1.BusinessLayer\Week2Oefening1.BusinessLayer.csproj">
+      <Project>{a0627c78-6325-48db-a6e8-bb5c82431b50}</Project>
+      <Name>Week2Oefening1.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Week2Oefening1.Models\Week2Oefening1.Models.csproj">
+      <Project>{df18e645-b157-4eef-856b-557ff364fc21}</Project>
+      <Name>Week2Oefening1.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Week2Oefening1\Week2Oefening1.csproj">
       <Project>{0850f8b3-4970-461e-b74b-0d863c5c1ce5}</Project>
       <Name>Week2Oefening1</Name>

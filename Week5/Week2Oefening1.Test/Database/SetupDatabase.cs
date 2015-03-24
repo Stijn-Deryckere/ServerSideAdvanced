@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Week2Oefening1.BusinessLayer.Context;
 using Week2Oefening1.Models;
 
 namespace Week2Oefening1.Test.Database
@@ -83,7 +84,7 @@ namespace Week2Oefening1.Test.Database
             return frameworks;
         }
 
-        private List<Device> ReadDevices(Week2Oefening1.Models.ApplicationDbContext context)
+        private List<Device> ReadDevices(ApplicationDbContext context)
         {
             String filepath = AppDomain.CurrentDomain.BaseDirectory + "/../Debug/Devices.txt";
             StreamReader osr = new StreamReader(filepath);
@@ -111,7 +112,7 @@ namespace Week2Oefening1.Test.Database
             return devices;
         }
 
-        private List<OS> GetDeviceOS(Week2Oefening1.Models.ApplicationDbContext context, String part)
+        private List<OS> GetDeviceOS(ApplicationDbContext context, String part)
         {
             String[] parts = part.Split('-');
             List<OS> operatingSystems = new List<OS>();
@@ -125,7 +126,7 @@ namespace Week2Oefening1.Test.Database
             return operatingSystems;
         }
 
-        private List<Framework> GetFrameworkOS(Week2Oefening1.Models.ApplicationDbContext context, String part)
+        private List<Framework> GetFrameworkOS(ApplicationDbContext context, String part)
         {
             String[] parts = part.Split('-');
             List<Framework> frameworks = new List<Framework>();
@@ -139,7 +140,7 @@ namespace Week2Oefening1.Test.Database
             return frameworks;
         }
 
-        private void AddRoles(Week2Oefening1.Models.ApplicationDbContext context)
+        private void AddRoles(ApplicationDbContext context)
         {
             String adminRole = "Administrator";
             String userRole = "User";

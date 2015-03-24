@@ -42,6 +42,24 @@ namespace Week2Oefening1.Controllers
             return View(basketItemCountPrice);
         }
 
+        [HttpPost]
+        public ActionResult Index(int id, int amount)
+        {
+            ApplicationUser user = userService.UserByName(User.Identity.Name);
+
+            List<BasketItem> basketItems = basketItemService.AllBasketItemsOfUser(user.Id).ToList<BasketItem>();
+            foreach(BasketItem basketItem in basketItems)
+            {
+                if(basketItem.RentDevice.Id.Equals(id))
+                {
+                    basketItem.Amount = amount;
+                    basketItemService.UpdateBasketItem(basketItem);
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
         [HttpGet]
         public int CountBasketItems()
         {

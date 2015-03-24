@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using Week2Oefening1.BusinessLayer.Context;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Week2Oefening1.Models.DAL
 {
@@ -33,7 +34,6 @@ namespace Week2Oefening1.Models.DAL
             foreach (OrderLine line in entity.OrderLines)
             {
                 this.context.Entry<Device>(line.RentDevice).State = EntityState.Unchanged;
-                this.context.OrderLines.Add(line);
             }
 
             this.context.Orders.Add(entity);
