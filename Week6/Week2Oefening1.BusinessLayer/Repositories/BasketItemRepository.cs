@@ -32,8 +32,8 @@ namespace Week2Oefening1.Models.DAL
 
         public IEnumerable<BasketItem> AllOfUser(String id)
         {
-            var query = from b in this.context.BasketItems.AsNoTracking<BasketItem>().Include(d => d.RentDevice).Include(u => u.RentUser) where b.RentUser.Id == id && b.IsDeleted == false select b;
-            return query;
+            var query = from b in this.context.BasketItems.Include(d => d.RentDevice).Include(u => u.RentUser) where b.RentUser.Id == id && b.IsDeleted == false select b;
+            return query.ToList<BasketItem>();
         }
 
         public override void Delete(BasketItem entityToDelete)
@@ -48,8 +48,11 @@ namespace Week2Oefening1.Models.DAL
         {
             this.context.Entry<ApplicationUser>(entityToUpdate.RentUser).State = EntityState.Unchanged;
             this.context.Entry<Device>(entityToUpdate.RentDevice).State = EntityState.Unchanged;
-            this.context.Entry<BasketItem>(entityToUpdate).State = EntityState.Modified;
+            this.context.Entry<BasketItem>(entityToUpdate).State = EntityState.Modified;            
+        }
 
+        public override void SaveChanges()
+        {
             this.context.SaveChanges();
         }
 

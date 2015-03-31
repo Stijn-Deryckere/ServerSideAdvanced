@@ -8,6 +8,7 @@ namespace Week2Oefening1.BusinessLayer.Repositories
         Week2Oefening1.Models.BasketItem AllOfUserAndDevice(Week2Oefening1.Models.ApplicationUser user, Week2Oefening1.Models.Device device);
         void Delete(Week2Oefening1.Models.BasketItem entityToDelete);
         Week2Oefening1.Models.BasketItem Insert(Week2Oefening1.Models.BasketItem entity);
+        void SaveChanges();
         void Update(Week2Oefening1.Models.BasketItem entityToUpdate);
     }
 }

@@ -77,10 +77,7 @@ namespace Week2Oefening1.Controllers
         public ActionResult Checkout()
         {
             //Get user. 
-            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            var userManager = new UserManager<ApplicationUser>(store);
-            ApplicationUser user = userManager.FindByNameAsync(User.Identity.Name).Result;
-            store.Context.Dispose();
+            ApplicationUser user = userService.UserByName(User.Identity.Name);
 
             List<BasketItem> basketItems = basketItemService.AllBasketItemsOfUser(user.Id).ToList<BasketItem>();
             Order order = orderService.MakeOrder(basketItems);
@@ -98,8 +95,7 @@ namespace Week2Oefening1.Controllers
 
             orderService.AddOrder(finalOrder);
             orderService.SendOrderMail(finalOrder);
-            List<BasketItem> basketItems2 = basketItemService.AllBasketItemsOfUser(order.User.Id).ToList<BasketItem>();
-            basketItemService.DeleteBasketItems(basketItems2);
+            basketItemService.DeleteBasketItems(basketItems1);
 
             return RedirectToAction("Index");
         }

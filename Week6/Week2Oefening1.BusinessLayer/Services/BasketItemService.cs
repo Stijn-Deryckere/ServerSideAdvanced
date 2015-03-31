@@ -47,7 +47,9 @@ namespace Week2Oefening1.Models.Services
             {
                 basketItem.IsDeleted = true;
                 repoBasketItem.Update(basketItem);
+                webshopCache.DecrementBasketItemsAmount(basketItem.RentUser);
             }
+            repoBasketItem.SaveChanges();
         }
 
         public void UpdateBasketItem(BasketItem basketItem)

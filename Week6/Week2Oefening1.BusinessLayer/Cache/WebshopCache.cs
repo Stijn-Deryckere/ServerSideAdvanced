@@ -37,9 +37,9 @@ namespace Week2Oefening1.BusinessLayer.Cache
              */
             var config = new ConfigurationOptions();
             config.SyncTimeout = 5000;
-            config.EndPoints.Add("internetofthingsshop.redis.cache.windows.net");
+            config.EndPoints.Add("internetofthings.redis.cache.windows.net");
             config.Ssl = true;
-            config.Password = "D4qyynuesiB0QTFczmyNlsW/EYeDW7RkVIQtodBVNIk=";
+            config.Password = "GfuYPvITZwJwmpNEDENPYunQ04IpUeqssiNdLlFmUr0=";
 
             connection = ConnectionMultiplexer.Connect(config);
             cache = connection.GetDatabase();
@@ -83,13 +83,13 @@ namespace Week2Oefening1.BusinessLayer.Cache
 
         public int GetNumberOfBasketItemsOfUser(ApplicationUser user)
         {
-            String cachedBasketItemAmount = cache.Get("basketAmount;" + user.UserName) as String;
+            String cachedBasketItemAmount = cache.StringGet(user.UserName);
             if (cachedBasketItemAmount != null)
                 return Convert.ToInt32(cachedBasketItemAmount);
 
             RefreshCachedBasketItemAmounts(user);
 
-            return Convert.ToInt32(cache.Get("basketAmount;" + user.UserName) as String);
+            return Convert.ToInt32(cache.Get(user.UserName) as String);
         }
 
         /*
@@ -118,7 +118,7 @@ namespace Week2Oefening1.BusinessLayer.Cache
             IEnumerable<BasketItem> basketItems = basketItemRepo.AllOfUser(user.Id).ToList<BasketItem>();
             String amount = "" + basketItems.Count();
 
-            cache.Set("basketAmount;" + user.UserName, amount);
+            cache.Set(user.UserName, amount);
         }
 
         /*
@@ -126,9 +126,12 @@ namespace Week2Oefening1.BusinessLayer.Cache
          */
         public void IncrementBasketItemsAmount(ApplicationUser user)
         {
-            int amount = Convert.ToInt32(cache.Get("basketAmount;" + user.UserName));
-            amount++;
-            cache.Set("basketAmount;" + user.UserName, amount);
+            cache.StringIncrement(user.UserName);
+        }
+
+        public void DecrementBasketItemsAmount(ApplicationUser user)
+        {
+            cache.StringDecrement(user.UserName);
         }
     }
 }
