@@ -37,9 +37,9 @@ namespace Week2Oefening1.BusinessLayer.Cache
              */
             var config = new ConfigurationOptions();
             config.SyncTimeout = 5000;
-            config.EndPoints.Add("internetofthingswebshop.redis.cache.windows.net");
+            config.EndPoints.Add("internetofthings.redis.cache.windows.net");
             config.Ssl = true;
-            config.Password = "uskrsfePyM+lhC/6iG5cWTMkHOgMJ2bW/d2VBM3e3H8=";
+            config.Password = "GfuYPvITZwJwmpNEDENPYunQ04IpUeqssiNdLlFmUr0=";
 
             connection = ConnectionMultiplexer.Connect(config);
             cache = connection.GetDatabase();
@@ -84,7 +84,7 @@ namespace Week2Oefening1.BusinessLayer.Cache
         public int GetNumberOfBasketItemsOfUser(ApplicationUser user)
         {
             String cachedBasketItemAmount = cache.StringGet(user.UserName);
-            if (string.IsNullOrEmpty(cachedBasketItemAmount))
+            if (cachedBasketItemAmount != null)
                 return Convert.ToInt32(cachedBasketItemAmount);
 
             RefreshCachedBasketItemAmounts(user);

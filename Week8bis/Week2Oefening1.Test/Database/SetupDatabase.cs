@@ -1,42 +1,51 @@
-namespace Week2Oefening1.BusinessLayer.Migrations
-{
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.IO;
-    using System.Linq;
-    using Week2Oefening1.BusinessLayer.Context;
-    using Week2Oefening1.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Week2Oefening1.BusinessLayer.Context;
+using Week2Oefening1.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Week2Oefening1.BusinessLayer.Context.ApplicationDbContext>
+namespace Week2Oefening1.Test.Database
+{
+    public class SetupDatabase : DropCreateDatabaseAlways<ApplicationDbContext>
     {
-        public Configuration()
+        public override void InitializeDatabase(ApplicationDbContext context)
         {
-            AutomaticMigrationsEnabled = false;
+            base.InitializeDatabase(context);
+            FillData(context);
         }
 
-        protected override void Seed(ApplicationDbContext context)
+        private void FillData(ApplicationDbContext context)
         {
             List<OS> operatingSystems = ReadOperatingSystems();
             List<Framework> frameworks = ReadFrameworks();
+
             foreach (OS os in operatingSystems)
-                context.OperatingSystems.AddOrUpdate(os);
+                context.OperatingSystems.Add(os);
+
             foreach (Framework fw in frameworks)
-                context.Frameworks.AddOrUpdate(fw);
+                context.Frameworks.Add(fw);
+
             List<Device> devices = ReadDevices(context);
             foreach (Device d in devices)
-                context.Devices.AddOrUpdate(d);
+                context.Devices.Add(d);
+
             AddRoles(context);
+
             context.SaveChanges();
         }
+
         private List<OS> ReadOperatingSystems()
         {
-            String filepath = AppDomain.CurrentDomain.BaseDirectory + "/Os.txt";
+            String filepath = AppDomain.CurrentDomain.BaseDirectory + "/../Debug/Os.txt";
             StreamReader osr = new StreamReader(filepath);
             osr.ReadLine();
+
             List<OS> operatingSystems = new List<OS>();
             String line = osr.ReadLine();
             while (line != null)
@@ -47,15 +56,18 @@ namespace Week2Oefening1.BusinessLayer.Migrations
                     Name = parts[1]
                 };
                 operatingSystems.Add(operatingSystem);
+
                 line = osr.ReadLine();
             }
             return operatingSystems;
         }
+
         private List<Framework> ReadFrameworks()
         {
-            String filepath = AppDomain.CurrentDomain.BaseDirectory + "/ProgrammingFramework.txt";
+            String filepath = AppDomain.CurrentDomain.BaseDirectory + "/../Debug/ProgrammingFramework.txt";
             StreamReader osr = new StreamReader(filepath);
             osr.ReadLine();
+
             List<Framework> frameworks = new List<Framework>();
             String line = osr.ReadLine();
             while (line != null)
@@ -66,15 +78,18 @@ namespace Week2Oefening1.BusinessLayer.Migrations
                     Name = parts[1]
                 };
                 frameworks.Add(framework);
+
                 line = osr.ReadLine();
             }
             return frameworks;
         }
+
         private List<Device> ReadDevices(ApplicationDbContext context)
         {
-            String filepath = AppDomain.CurrentDomain.BaseDirectory + "/Devices.txt";
+            String filepath = AppDomain.CurrentDomain.BaseDirectory + "/../Debug/Devices.txt";
             StreamReader osr = new StreamReader(filepath);
             osr.ReadLine();
+
             List<Device> devices = new List<Device>();
             String line = osr.ReadLine();
             while (line != null)
@@ -96,10 +111,12 @@ namespace Week2Oefening1.BusinessLayer.Migrations
             }
             return devices;
         }
+
         private List<OS> GetDeviceOS(ApplicationDbContext context, String part)
         {
             String[] parts = part.Split('-');
             List<OS> operatingSystems = new List<OS>();
+
             foreach (String tempPart in parts)
             {
                 int tempId = Convert.ToInt32(tempPart);
@@ -108,10 +125,12 @@ namespace Week2Oefening1.BusinessLayer.Migrations
             }
             return operatingSystems;
         }
+
         private List<Framework> GetFrameworkOS(ApplicationDbContext context, String part)
         {
             String[] parts = part.Split('-');
             List<Framework> frameworks = new List<Framework>();
+
             foreach (String tempPart in parts)
             {
                 int tempId = Convert.ToInt32(tempPart);
@@ -120,16 +139,22 @@ namespace Week2Oefening1.BusinessLayer.Migrations
             }
             return frameworks;
         }
+
         private void AddRoles(ApplicationDbContext context)
         {
             String adminRole = "Administrator";
             String userRole = "User";
+
             IdentityResult roleResult;
+
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
             if (!roleManager.RoleExists(adminRole))
                 roleResult = roleManager.Create(new IdentityRole(adminRole));
+
             if (!roleManager.RoleExists(userRole))
                 roleResult = roleManager.Create(new IdentityRole(userRole));
+
             if (!context.Users.Any(u => u.Email.Equals("dieter.de.preeter@howest.be")))
             {
                 var store = new UserStore<ApplicationUser>(context);
@@ -148,6 +173,7 @@ namespace Week2Oefening1.BusinessLayer.Migrations
                 manager.Create(user, "-Password1");
                 manager.AddToRole(user.Id, adminRole);
             }
+
             if (!context.Users.Any(u => u.Email.Equals("kristof@kristofcolpaert.com")))
             {
                 var store = new UserStore<ApplicationUser>(context);
@@ -166,6 +192,7 @@ namespace Week2Oefening1.BusinessLayer.Migrations
                 manager.Create(user, "-Password1");
                 manager.AddToRole(user.Id, adminRole);
             }
+
             if (!context.Users.Any(u => u.Email.Equals("rodric.degroote@student.howest.be")))
             {
                 var store = new UserStore<ApplicationUser>(context);

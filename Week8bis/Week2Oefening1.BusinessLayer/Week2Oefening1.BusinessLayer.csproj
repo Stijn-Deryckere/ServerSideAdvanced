@@ -98,13 +98,9 @@
     <Compile Include="Cache\SampleStackExchangeRedisExtensions.cs" />
     <Compile Include="Cache\WebshopCache.cs" />
     <Compile Include="Context\ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201504211503405_dlklkdslksd.cs" />
-    <Compile Include="Migrations\201504211503405_dlklkdslksd.Designer.cs">
-      <DependentUpon>201504211503405_dlklkdslksd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504211507054_TestDbBlabla.cs" />
-    <Compile Include="Migrations\201504211507054_TestDbBlabla.Designer.cs">
-      <DependentUpon>201504211507054_TestDbBlabla.cs</DependentUpon>
+    <Compile Include="Migrations\201504211452303_test.cs" />
+    <Compile Include="Migrations\201504211452303_test.Designer.cs">
+      <DependentUpon>201504211452303_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PriceCalculator\ItemCountPrice.cs" />
@@ -139,11 +135,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504211503405_dlklkdslksd.resx">
-      <DependentUpon>201504211503405_dlklkdslksd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504211507054_TestDbBlabla.resx">
-      <DependentUpon>201504211507054_TestDbBlabla.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504211452303_test.resx">
+      <DependentUpon>201504211452303_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

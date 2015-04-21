@@ -1,4 +1,4 @@
-namespace Week2Oefening1.BusinessLayer.Migrations
+namespace Webshop.BusinessLayer.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -8,22 +8,22 @@ namespace Week2Oefening1.BusinessLayer.Migrations
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
-    using Week2Oefening1.BusinessLayer.Context;
-    using Week2Oefening1.Models;
+    using Webshop.BusinessLayer.Context;
+    using Webshop.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Week2Oefening1.BusinessLayer.Context.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Webshop.BusinessLayer.Context.WebshopContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ApplicationDbContext context)
+        protected override void Seed(WebshopContext context)
         {
             List<OS> operatingSystems = ReadOperatingSystems();
             List<Framework> frameworks = ReadFrameworks();
             foreach (OS os in operatingSystems)
-                context.OperatingSystems.AddOrUpdate(os);
+                context.OSs.AddOrUpdate(os);
             foreach (Framework fw in frameworks)
                 context.Frameworks.AddOrUpdate(fw);
             List<Device> devices = ReadDevices(context);
@@ -70,7 +70,7 @@ namespace Week2Oefening1.BusinessLayer.Migrations
             }
             return frameworks;
         }
-        private List<Device> ReadDevices(ApplicationDbContext context)
+        private List<Device> ReadDevices(WebshopContext context)
         {
             String filepath = AppDomain.CurrentDomain.BaseDirectory + "/Devices.txt";
             StreamReader osr = new StreamReader(filepath);
@@ -96,31 +96,31 @@ namespace Week2Oefening1.BusinessLayer.Migrations
             }
             return devices;
         }
-        private List<OS> GetDeviceOS(ApplicationDbContext context, String part)
+        private List<OS> GetDeviceOS(WebshopContext context, String part)
         {
             String[] parts = part.Split('-');
             List<OS> operatingSystems = new List<OS>();
             foreach (String tempPart in parts)
             {
                 int tempId = Convert.ToInt32(tempPart);
-                var query = (from o in context.OperatingSystems where o.Id == tempId select o);
+                var query = (from o in context.OSs where o.ID == tempId select o);
                 operatingSystems.Add(query.SingleOrDefault<OS>());
             }
             return operatingSystems;
         }
-        private List<Framework> GetFrameworkOS(ApplicationDbContext context, String part)
+        private List<Framework> GetFrameworkOS(WebshopContext context, String part)
         {
             String[] parts = part.Split('-');
             List<Framework> frameworks = new List<Framework>();
             foreach (String tempPart in parts)
             {
                 int tempId = Convert.ToInt32(tempPart);
-                var query = (from f in context.Frameworks where f.Id == tempId select f);
+                var query = (from f in context.Frameworks where f.ID == tempId select f);
                 frameworks.Add(query.SingleOrDefault<Framework>());
             }
             return frameworks;
         }
-        private void AddRoles(ApplicationDbContext context)
+        private void AddRoles(WebshopContext context)
         {
             String adminRole = "Administrator";
             String userRole = "User";
@@ -130,14 +130,14 @@ namespace Week2Oefening1.BusinessLayer.Migrations
                 roleResult = roleManager.Create(new IdentityRole(adminRole));
             if (!roleManager.RoleExists(userRole))
                 roleResult = roleManager.Create(new IdentityRole(userRole));
-            if (!context.Users.Any(u => u.Email.Equals("dieter.de.preeter@howest.be")))
+            if (!context.ApplicationUsers.Any(u => u.Email.Equals("dieter.de.preeter@howest.be")))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
                 var user = new ApplicationUser()
                 {
                     Name = "De Preester",
-                    FirstName = "Dieter",
+                    Firstname = "Dieter",
                     Email = "dieter.de.preester@howest.be",
                     UserName = "dieter.de.preester@howest.be",
                     Address = "Graaf Karel De Goedelaan 1",
@@ -148,14 +148,14 @@ namespace Week2Oefening1.BusinessLayer.Migrations
                 manager.Create(user, "-Password1");
                 manager.AddToRole(user.Id, adminRole);
             }
-            if (!context.Users.Any(u => u.Email.Equals("kristof@kristofcolpaert.com")))
+            if (!context.ApplicationUsers.Any(u => u.Email.Equals("kristof@kristofcolpaert.com")))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
                 var user = new ApplicationUser()
                 {
                     Name = "Colpaert",
-                    FirstName = "Kristof",
+                    Firstname = "Kristof",
                     Email = "kristof@kristofcolpaert.com",
                     UserName = "kristof@kristofcolpaert.com",
                     Address = "Zwalmkouter 12",
@@ -166,14 +166,14 @@ namespace Week2Oefening1.BusinessLayer.Migrations
                 manager.Create(user, "-Password1");
                 manager.AddToRole(user.Id, adminRole);
             }
-            if (!context.Users.Any(u => u.Email.Equals("rodric.degroote@student.howest.be")))
+            if (!context.ApplicationUsers.Any(u => u.Email.Equals("rodric.degroote@student.howest.be")))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
                 var user = new ApplicationUser()
                 {
                     Name = "Degroote",
-                    FirstName = "Rodric",
+                    Firstname = "Rodric",
                     Email = "rodric.degroote@student.howest.be",
                     UserName = "rodric.degroote@student.howest.be",
                     Address = "De Patine 47",

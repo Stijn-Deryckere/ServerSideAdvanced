@@ -1,0 +1,36 @@
+﻿@model Week2Oefening1.Models.ItemCountPrice
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Basket case</h2>
+
+<table class="table">
+    <tr>
+        <th>Device</th>
+        <th>Unit price</th>
+        <th>Amount</th>
+        <th>Price</th>
+    </tr>
+    @foreach(var item in Model.DeviceAmounts)
+    {
+        double price = item.Amount * item.RentDevice.RentingPrice;
+        <tr>
+            <td>@item.RentDevice.Name</td>
+            <td>€@item.RentDevice.RentingPrice</td>
+            <td>
+                @using(Html.BeginForm("Index", "Basket", FormMethod.Post))
+                {
+                    <input type="hidden" name="id" value="@item.RentDevice.Id" />
+                    <input type="text" name="amount" value="@item.Amount" />
+                    <input type="submit" class="btn btn-info" value="Wijzigen" />
+                }
+            </td>
+            <td>€@price</td>
+        </tr>
+    }
+</table>
+<p><strong>Total price: €@Model.TotalPrice</strong></p>
+<a class="btn btn-success" href="/Basket/Checkout">Checkout</a>
+<a class="btn btn-info" href="/Catalog/">Back to list</a>
