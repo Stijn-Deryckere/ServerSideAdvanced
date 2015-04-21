@@ -130,7 +130,7 @@ namespace Webshop.BusinessLayer.Migrations
                 roleResult = roleManager.Create(new IdentityRole(adminRole));
             if (!roleManager.RoleExists(userRole))
                 roleResult = roleManager.Create(new IdentityRole(userRole));
-            if (!context.ApplicationUsers.Any(u => u.Email.Equals("dieter.de.preeter@howest.be")))
+            if (!context.Users.Any(u => u.Email.Equals("dieter.de.preeter@howest.be")))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
@@ -148,7 +148,7 @@ namespace Webshop.BusinessLayer.Migrations
                 manager.Create(user, "-Password1");
                 manager.AddToRole(user.Id, adminRole);
             }
-            if (!context.ApplicationUsers.Any(u => u.Email.Equals("kristof@kristofcolpaert.com")))
+            if (!context.Users.Any(u => u.Email.Equals("kristof@kristofcolpaert.com")))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
@@ -166,7 +166,7 @@ namespace Webshop.BusinessLayer.Migrations
                 manager.Create(user, "-Password1");
                 manager.AddToRole(user.Id, adminRole);
             }
-            if (!context.ApplicationUsers.Any(u => u.Email.Equals("rodric.degroote@student.howest.be")))
+            if (!context.Users.Any(u => u.Email.Equals("rodric.degroote@student.howest.be")))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);

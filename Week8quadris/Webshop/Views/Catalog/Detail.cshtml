@@ -1,0 +1,28 @@
+﻿@model Webshop.Models.Device
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<article class="product-detail">
+    @{
+        String[] modelParts = Model.Name.Split('-');
+    }
+    <h2>@modelParts[0]</h2>
+    <img src="~/Images/@Model.Image" />
+    <aside>
+        <p>Model:</p>
+        <ul>
+            <li>@Model.Name</li>
+        </ul>
+        <p>Huur mij voor:</p>
+        <ul>
+            <li>@Model.RentingPrice</li>
+        </ul>
+        <p>Stock te verhuren:</p>
+        <ul>
+            <li>@Model.Stock</li>
+        </ul>
+        <a class="btn btn-info" href="/Catalog/">Back to list</a>
+    </aside>
+</article>
