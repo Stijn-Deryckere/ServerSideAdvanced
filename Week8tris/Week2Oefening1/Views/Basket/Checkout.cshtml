@@ -1,0 +1,61 @@
+﻿@model Week2Oefening1.Models.Order
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+<h3>Your order</h3>
+
+<table class="table">
+    <tr>
+        <th>Device</th>
+        <th>Unit price</th>
+        <th>Amount</th>
+        <th>Price</th>
+    </tr>
+    @foreach(var item in Model.OrderLines)
+    {
+        double price = item.Amount * item.RentingPrice;
+        <tr>
+            <td>@item.RentDevice.Name</td>
+            <td>€@item.RentingPrice</td>
+            <td>@item.Amount</td>
+            <td>€@price</td>
+        </tr>
+    }
+</table>
+<p><strong>Total price: €@Model.TotalPrice</strong></p>
+
+<h3>Your information</h3>
+
+@using (Html.BeginForm("FinalCheckout", "Basket", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Address)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.City)
+        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.City)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Zipcode)
+        @Html.TextBoxFor(m => m.Zipcode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Zipcode)
+    </div>
+    <input type="submit" value="Proceed" class="btn btn-success"/>
+}
