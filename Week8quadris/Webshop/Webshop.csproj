@@ -206,9 +206,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\ARD-ADK-REV3-1-800x533.jpg" />
-    <Content Include="Images\ARD-ESPLORA-1-800x533.jpg" />
-    <Content Include="Images\RPF-RP2B1GB-2-800x533.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\iotonlineshop - FTP.pubxml" />
@@ -272,6 +269,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Data\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

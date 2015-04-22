@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.Azure;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -77,8 +81,32 @@ namespace Webshop.BusinessLayer.Services
         public String SaveImage(HttpPostedFileBase image)
         {
             String fileName = Path.GetFileName(image.FileName);
-            String path = AppDomain.CurrentDomain.BaseDirectory + "\\Images\\" + fileName;
+
+            //We verschaffen onszelf toegang to de Storage Account via de ConnectionString.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            //Aanmaken van de Blob client. 
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+            //Referentie naar de container images achterhalen.
+            CloudBlobContainer blobContainer = blobClient.GetContainerReference("images");
+
+            //Referentie naar de image ophalen.
+            CloudBlockBlob blockBlob = blobContainer.GetBlockBlobReference(fileName);
+
+            //We slaan het bestand eerst even lokaal op.
+            String path = AppDomain.CurrentDomain.BaseDirectory + "\\images\\" + fileName;
             image.SaveAs(path);
+
+            //De blob met als naam de filenaam van de image aanmaken of overschrijven met een lokaal bestand.
+            using(var fileStream = System.IO.File.OpenRead(path))
+            {
+                blockBlob.UploadFromStream(fileStream);
+            }
+
+            //We deleten het bestand opnieuw lokaal.
+            File.Delete(path);
+
             return fileName;
         }
     }

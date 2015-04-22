@@ -13,7 +13,7 @@ namespace Webshop.BusinessLayer.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201504212300036_InitDb"; }
+            get { return "201504222213400_InitDb"; }
         }
         
         string IMigrationMetadata.Source

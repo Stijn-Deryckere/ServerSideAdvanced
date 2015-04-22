@@ -13,5 +13,6 @@ namespace Webshop.Models
         public int ID { get; set; }
         [Required]
         public String Name { get; set; }
+        public List<Device> Devices { get; set; }
     }
 }

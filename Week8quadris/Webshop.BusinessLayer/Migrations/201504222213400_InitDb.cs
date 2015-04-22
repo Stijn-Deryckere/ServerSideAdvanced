@@ -27,11 +27,8 @@ namespace Webshop.BusinessLayer.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Device_ID = c.Int(),
                     })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Devices", t => t.Device_ID)
-                .Index(t => t.Device_ID);
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.OS",
@@ -39,11 +36,8 @@ namespace Webshop.BusinessLayer.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Device_ID = c.Int(),
                     })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Devices", t => t.Device_ID)
-                .Index(t => t.Device_ID);
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -119,6 +113,32 @@ namespace Webshop.BusinessLayer.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.FrameworkDevices",
+                c => new
+                    {
+                        Framework_ID = c.Int(nullable: false),
+                        Device_ID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Framework_ID, t.Device_ID })
+                .ForeignKey("dbo.Frameworks", t => t.Framework_ID, cascadeDelete: true)
+                .ForeignKey("dbo.Devices", t => t.Device_ID, cascadeDelete: true)
+                .Index(t => t.Framework_ID)
+                .Index(t => t.Device_ID);
+            
+            CreateTable(
+                "dbo.OSDevices",
+                c => new
+                    {
+                        OS_ID = c.Int(nullable: false),
+                        Device_ID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.OS_ID, t.Device_ID })
+                .ForeignKey("dbo.OS", t => t.OS_ID, cascadeDelete: true)
+                .ForeignKey("dbo.Devices", t => t.Device_ID, cascadeDelete: true)
+                .Index(t => t.OS_ID)
+                .Index(t => t.Device_ID);
+            
         }
         
         public override void Down()
@@ -127,16 +147,22 @@ namespace Webshop.BusinessLayer.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.OS", "Device_ID", "dbo.Devices");
-            DropForeignKey("dbo.Frameworks", "Device_ID", "dbo.Devices");
+            DropForeignKey("dbo.OSDevices", "Device_ID", "dbo.Devices");
+            DropForeignKey("dbo.OSDevices", "OS_ID", "dbo.OS");
+            DropForeignKey("dbo.FrameworkDevices", "Device_ID", "dbo.Devices");
+            DropForeignKey("dbo.FrameworkDevices", "Framework_ID", "dbo.Frameworks");
+            DropIndex("dbo.OSDevices", new[] { "Device_ID" });
+            DropIndex("dbo.OSDevices", new[] { "OS_ID" });
+            DropIndex("dbo.FrameworkDevices", new[] { "Device_ID" });
+            DropIndex("dbo.FrameworkDevices", new[] { "Framework_ID" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.OS", new[] { "Device_ID" });
-            DropIndex("dbo.Frameworks", new[] { "Device_ID" });
+            DropTable("dbo.OSDevices");
+            DropTable("dbo.FrameworkDevices");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
