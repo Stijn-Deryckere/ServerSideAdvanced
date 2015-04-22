@@ -49,5 +49,30 @@ namespace Webshop.Controllers
 
             return View(devicePM);
         }
+
+        [Authorize(Roles="Administrator")]
+        [HttpPost]
+        public ActionResult Add(DevicePM devicePM)
+        {
+            if(!ModelState.IsValid)
+                return RedirectToAction("Add");
+
+            List<OS> oss = new List<OS>();
+            foreach(int i in devicePM.NewOperatingSystems)
+                oss.Add(this.DeviceService.OSById(i));
+
+            List<Framework> frameworks = new List<Framework>();
+            foreach (int i in devicePM.NewFrameworks)
+                frameworks.Add(this.DeviceService.FrameworkById(i));
+
+            devicePM.NewDevice.DeviceOS = oss;
+            devicePM.NewDevice.DeviceFramework = frameworks;
+
+            String imagePath = this.DeviceService.SaveImage(devicePM.ImageFile);
+            devicePM.NewDevice.Image = imagePath;
+            this.DeviceService.AddDevice(devicePM.NewDevice);
+
+            return RedirectToAction("Index");
+        }
     }
 }

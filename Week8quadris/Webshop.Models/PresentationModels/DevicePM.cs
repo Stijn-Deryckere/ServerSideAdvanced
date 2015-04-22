@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace Webshop.Models.PresentationModels
     public class DevicePM
     {
         public Device NewDevice { get; set; }
+        [Required]
         public HttpPostedFileBase ImageFile { get; set; }
         public int[] NewOperatingSystems { get; set; }
         public SelectList OSs { get; set; }

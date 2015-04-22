@@ -28,5 +28,19 @@ namespace Webshop.BusinessLayer.Repositories
             var query = from d in this.context.Devices.Include(o => o.DeviceOS).Include(f => f.DeviceFramework) where d.ID == tempId select d;
             return query.SingleOrDefault<Device>();
         }
+
+        public override Device Insert(Device entity)
+        {
+            foreach(Framework framework in entity.DeviceFramework)
+                this.context.Entry<Framework>(framework).State = EntityState.Unchanged;
+
+            foreach (OS os in entity.DeviceOS)
+                this.context.Entry<OS>(os).State = EntityState.Unchanged;
+
+            this.context.Devices.Add(entity);
+            this.context.SaveChanges();
+
+            return entity;
+        }
     }
 }
