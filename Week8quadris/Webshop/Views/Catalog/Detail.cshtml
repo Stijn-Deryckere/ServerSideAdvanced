@@ -1,4 +1,4 @@
-﻿@model Webshop.Models.Device
+﻿@model Webshop.Models.PresentationModels.DeviceBasketItemPM
 
 @{
     ViewBag.Title = "Detail";
@@ -6,23 +6,27 @@
 
 <article class="product-detail">
     @{
-        String[] modelParts = Model.Name.Split('-');
+        String[] modelParts = Model.NewDevice.Name.Split('-');
     }
     <h2>@modelParts[0]</h2>
-    <img width="200" src="https://internetofthingswebshop.blob.core.windows.net/images/@Model.Image" />
+    <img width="200" src="https://internetofthingswebshop.blob.core.windows.net/images/@Model.NewDevice.Image" />
     <aside>
         <p>Model:</p>
         <ul>
-            <li>@Model.Name</li>
+            <li>@Model.NewDevice.Name</li>
         </ul>
         <p>Huur mij voor:</p>
         <ul>
-            <li>@Model.RentingPrice</li>
+            <li>@Model.NewDevice.RentingPrice</li>
         </ul>
         <p>Stock te verhuren:</p>
         <ul>
-            <li>@Model.Stock</li>
+            <li>@Model.NewDevice.Stock</li>
         </ul>
         <a class="btn btn-info" href="/Catalog/">Back to list</a>
     </aside>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("RentPartial", Model.NewBasketItem)
+    }
 </article>

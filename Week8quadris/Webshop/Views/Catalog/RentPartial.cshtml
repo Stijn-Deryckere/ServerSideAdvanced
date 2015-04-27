@@ -1,0 +1,16 @@
+﻿@model Webshop.Models.BasketItem
+
+<br />
+
+@using (Html.BeginForm("Add", "Basket", FormMethod.Post, new { @class = "form" }))
+{
+    <div class="form-group">
+        @Html.Label("Aantal te huren:")
+        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" }) 
+        @Html.ValidationMessageFor(m => m.Amount)
+    </div>
+
+    @Html.HiddenFor(m => m.NewDevice.ID)
+        
+    <input class="btn btn-success" type="submit" value="Add to basket" />
+}

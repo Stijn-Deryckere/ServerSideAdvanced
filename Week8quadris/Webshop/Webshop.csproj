@@ -183,6 +183,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -266,10 +267,12 @@
     <Content Include="Views\Catalog\Index.cshtml" />
     <Content Include="Views\Catalog\Detail.cshtml" />
     <Content Include="Views\Catalog\Add.cshtml" />
+    <Content Include="Views\Catalog\RentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Data\" />
     <Folder Include="images\" />
+    <Folder Include="Views\Basket\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

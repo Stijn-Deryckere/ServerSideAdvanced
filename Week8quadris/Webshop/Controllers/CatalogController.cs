@@ -30,9 +30,18 @@ namespace Webshop.Controllers
         [HttpGet]
         public ActionResult Detail(int id)
         {
-            Device device = this.DeviceService.DeviceById(id);
-            Boolean test = this.User.IsInRole("Administrator");
-            return View(device);
+            DeviceBasketItemPM deviceBasketItemPM = new DeviceBasketItemPM()
+            {
+                NewDevice = this.DeviceService.DeviceById(id)
+            };
+
+            BasketItem basketItem = new BasketItem()
+            {
+                NewDevice = deviceBasketItemPM.NewDevice
+            };
+
+            deviceBasketItemPM.NewBasketItem = basketItem;
+            return View(deviceBasketItemPM);
         }
 
         [Authorize(Roles="Administrator")]
