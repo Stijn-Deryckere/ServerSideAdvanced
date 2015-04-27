@@ -19,5 +19,6 @@ namespace Webshop.BusinessLayer.Context
         public DbSet<Device> Devices { get; set; }
         public DbSet<Framework> Frameworks { get; set; }
         public DbSet<OS> OSs { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
     }
 }

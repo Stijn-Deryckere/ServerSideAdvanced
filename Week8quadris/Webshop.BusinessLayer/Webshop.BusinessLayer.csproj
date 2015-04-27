@@ -81,9 +81,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\WebshopContext.cs" />
-    <Compile Include="Migrations\201504222213400_InitDb.cs" />
-    <Compile Include="Migrations\201504222213400_InitDb.Designer.cs">
-      <DependentUpon>201504222213400_InitDb.cs</DependentUpon>
+    <Compile Include="Migrations\201504271945108_InitDb270415.cs" />
+    <Compile Include="Migrations\201504271945108_InitDb270415.Designer.cs">
+      <DependentUpon>201504271945108_InitDb270415.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,8 +107,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504222213400_InitDb.resx">
-      <DependentUpon>201504222213400_InitDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504271945108_InitDb270415.resx">
+      <DependentUpon>201504271945108_InitDb270415.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

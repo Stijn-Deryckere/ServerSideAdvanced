@@ -3,10 +3,27 @@ namespace Webshop.BusinessLayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDb : DbMigration
+    public partial class InitDb270415 : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.BasketItems",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Timestamp = c.DateTime(nullable: false),
+                        Amount = c.Int(nullable: false),
+                        RentingPrice = c.Double(nullable: false),
+                        NewDevice_ID = c.Int(nullable: false),
+                        NewUser_Id = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Devices", t => t.NewDevice_ID, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.NewUser_Id, cascadeDelete: true)
+                .Index(t => t.NewDevice_ID)
+                .Index(t => t.NewUser_Id);
+            
             CreateTable(
                 "dbo.Devices",
                 c => new
@@ -38,29 +55,6 @@ namespace Webshop.BusinessLayer.Migrations
                         Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.AspNetRoles",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
-                    })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-            
-            CreateTable(
-                "dbo.AspNetUserRoles",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -114,6 +108,29 @@ namespace Webshop.BusinessLayer.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.AspNetRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
+            CreateTable(
                 "dbo.FrameworkDevices",
                 c => new
                     {
@@ -143,10 +160,12 @@ namespace Webshop.BusinessLayer.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.BasketItems", "NewUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.BasketItems", "NewDevice_ID", "dbo.Devices");
             DropForeignKey("dbo.OSDevices", "Device_ID", "dbo.Devices");
             DropForeignKey("dbo.OSDevices", "OS_ID", "dbo.OS");
             DropForeignKey("dbo.FrameworkDevices", "Device_ID", "dbo.Devices");
@@ -155,22 +174,25 @@ namespace Webshop.BusinessLayer.Migrations
             DropIndex("dbo.OSDevices", new[] { "OS_ID" });
             DropIndex("dbo.FrameworkDevices", new[] { "Device_ID" });
             DropIndex("dbo.FrameworkDevices", new[] { "Framework_ID" });
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
-            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
-            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.BasketItems", new[] { "NewUser_Id" });
+            DropIndex("dbo.BasketItems", new[] { "NewDevice_ID" });
             DropTable("dbo.OSDevices");
             DropTable("dbo.FrameworkDevices");
+            DropTable("dbo.AspNetRoles");
+            DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.AspNetUserRoles");
-            DropTable("dbo.AspNetRoles");
             DropTable("dbo.OS");
             DropTable("dbo.Frameworks");
             DropTable("dbo.Devices");
+            DropTable("dbo.BasketItems");
         }
     }
 }

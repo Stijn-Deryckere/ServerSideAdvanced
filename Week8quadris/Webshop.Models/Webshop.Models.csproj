@@ -55,9 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="BasketItem.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Framework.cs" />
     <Compile Include="OS.cs" />
+    <Compile Include="PresentationModels\DeviceBasketItemPM.cs" />
     <Compile Include="PresentationModels\DevicePM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
