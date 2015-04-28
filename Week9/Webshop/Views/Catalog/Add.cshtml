@@ -1,0 +1,61 @@
+﻿@model Webshop.Models.PresentationModels.DevicePM
+
+@{
+    ViewBag.Title = "Add";
+}
+
+@using (Html.BeginForm("Add", "Catalog", FormMethod.Post, new { @class = "form", @enctype = "multipart/form-data" }))
+{
+    <h2>General</h2>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.Name)
+        @Html.TextBoxFor(m => m.NewDevice.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.Description)
+        @Html.TextBoxFor(m => m.NewDevice.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.Description)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.PurchasePrice)
+        @Html.TextBoxFor(m => m.NewDevice.PurchasePrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.PurchasePrice)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.RentingPrice)
+        @Html.TextBoxFor(m => m.NewDevice.RentingPrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.RentingPrice)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.Stock)
+        @Html.TextBoxFor(m => m.NewDevice.Stock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.Stock)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.Image)
+        @Html.TextBoxFor(m => m.ImageFile, new { type = "file" })
+        @Html.ValidationMessageFor(m => m.ImageFile)
+    </div>
+
+    <h2>Software</h2>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.DeviceOS)
+        @Html.ListBoxFor(m => m.NewOperatingSystems, Model.OSs, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.DeviceOS)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.DeviceFramework)
+        @Html.ListBoxFor(m => m.NewFrameworks, Model.Frameworks, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.DeviceFramework)
+    </div>
+
+    <input class="btn btn-success" type="submit" value="Submit" />
+}
