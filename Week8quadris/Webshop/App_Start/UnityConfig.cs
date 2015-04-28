@@ -17,8 +17,12 @@ namespace Webshop
             container.RegisterType<IGenericRepository<OS>, GenericRepository<OS>>();
             container.RegisterType<IGenericRepository<Framework>, GenericRepository<Framework>>();
             container.RegisterType<IDeviceRepository, DeviceRepository>();
+            container.RegisterType<IBasketItemRepository, BasketItemRepository>();
+            container.RegisterType<IApplicationUserRepository, ApplicationUserRepository>();
 
             container.RegisterType<IDeviceService, DeviceService>();
+            container.RegisterType<IBasketItemService, BasketItemService>();
+            container.RegisterType<IApplicationUserService, ApplicationUserService>();
             
             // register all your components with the container here
             // it is NOT necessary to register your controllers

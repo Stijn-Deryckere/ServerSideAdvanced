@@ -268,11 +268,11 @@
     <Content Include="Views\Catalog\Detail.cshtml" />
     <Content Include="Views\Catalog\Add.cshtml" />
     <Content Include="Views\Catalog\RentPartial.cshtml" />
+    <Content Include="Views\Basket\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Data\" />
     <Folder Include="images\" />
-    <Folder Include="Views\Basket\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
