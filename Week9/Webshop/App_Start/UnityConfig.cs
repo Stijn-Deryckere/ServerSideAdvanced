@@ -1,10 +1,12 @@
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using Unity.Mvc5;
-using Webshop.Models;
+using System.Data.Entity;
 using Webshop.BusinessLayer.Repositories;
+using Webshop.BusinessLayer.Context;
 using Webshop.BusinessLayer.Services;
 using Webshop.Controllers;
+using Webshop.Models;
 
 namespace Webshop
 {
@@ -12,27 +14,30 @@ namespace Webshop
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();
+            var container = new UnityContainer();
 
-            container.RegisterType<IGenericRepository<OS>, GenericRepository<OS>>();
-            container.RegisterType<IGenericRepository<Framework>, GenericRepository<Framework>>();
-            container.RegisterType<IDeviceRepository, DeviceRepository>();
-            container.RegisterType<IBasketItemRepository, BasketItemRepository>();
-            container.RegisterType<IApplicationUserRepository, ApplicationUserRepository>();
-            container.RegisterType<IGenericRepository<AvailableCulture>, GenericRepository<AvailableCulture>>();
+            container.RegisterType<DbContext, WebshopContext>(new PerRequestLifetimeManager());
+            container.RegisterType<IGenericRepository<OS>, GenericRepository<OS>>(new PerRequestLifetimeManager());
+            container.RegisterType<IGenericRepository<Framework>, GenericRepository<Framework>>(new PerRequestLifetimeManager());
+            container.RegisterType<IDeviceRepository, DeviceRepository>(new PerRequestLifetimeManager());
+            container.RegisterType<IBasketItemRepository, BasketItemRepository>(new PerRequestLifetimeManager());
+            container.RegisterType<IApplicationUserRepository, ApplicationUserRepository>(new PerRequestLifetimeManager());
+            container.RegisterType<IGenericRepository<AvailableCulture>, GenericRepository<AvailableCulture>>(new PerRequestLifetimeManager());
+            container.RegisterType<IOrderRepository, OrderRepository>(new PerRequestLifetimeManager());
 
-            container.RegisterType<IDeviceService, DeviceService>();
-            container.RegisterType<IBasketItemService, BasketItemService>();
-            container.RegisterType<IApplicationUserService, ApplicationUserService>();
-            container.RegisterType<ILanguageService, LanguageService>();
-            
+            container.RegisterType<IDeviceService, DeviceService>(new PerRequestLifetimeManager());
+            container.RegisterType<IBasketItemService, BasketItemService>(new PerRequestLifetimeManager());
+            container.RegisterType<IApplicationUserService, ApplicationUserService>(new PerRequestLifetimeManager());
+            container.RegisterType<ILanguageService, LanguageService>(new PerRequestLifetimeManager());
+            container.RegisterType<IOrderService, OrderService>(new PerRequestLifetimeManager());
+
             // register all your components with the container here
             // it is NOT necessary to register your controllers
-            
+
             // e.g. container.RegisterType<ITestService, TestService>();
 
             container.RegisterType<AccountController>(new InjectionConstructor());
-            
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

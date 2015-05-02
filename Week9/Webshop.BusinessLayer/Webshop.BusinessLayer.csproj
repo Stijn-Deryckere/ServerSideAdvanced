@@ -86,6 +86,30 @@
     <Compile Include="Migrations\201504281415004_InitDb280415.Designer.cs">
       <DependentUpon>201504281415004_InitDb280415.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505020858440_InitDb020515.cs" />
+    <Compile Include="Migrations\201505020858440_InitDb020515.Designer.cs">
+      <DependentUpon>201505020858440_InitDb020515.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505020941481_InitDb0205151.cs" />
+    <Compile Include="Migrations\201505020941481_InitDb0205151.Designer.cs">
+      <DependentUpon>201505020941481_InitDb0205151.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505021000396_InitDb0205152.cs" />
+    <Compile Include="Migrations\201505021000396_InitDb0205152.Designer.cs">
+      <DependentUpon>201505021000396_InitDb0205152.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505021028091_InitDb0205153.cs" />
+    <Compile Include="Migrations\201505021028091_InitDb0205153.Designer.cs">
+      <DependentUpon>201505021028091_InitDb0205153.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505021618561_InitDb0205154.cs" />
+    <Compile Include="Migrations\201505021618561_InitDb0205154.Designer.cs">
+      <DependentUpon>201505021618561_InitDb0205154.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505021639273_InitDb0205155.cs" />
+    <Compile Include="Migrations\201505021639273_InitDb0205155.Designer.cs">
+      <DependentUpon>201505021639273_InitDb0205155.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
@@ -96,6 +120,8 @@
     <Compile Include="Repositories\IBasketItemRepository.cs" />
     <Compile Include="Repositories\IDeviceRepository.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
+    <Compile Include="Repositories\IOrderRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Services\ApplicationUserService.cs" />
     <Compile Include="Services\BasketItemService.cs" />
     <Compile Include="Services\DeviceService.cs" />
@@ -103,7 +129,9 @@
     <Compile Include="Services\IBasketItemService.cs" />
     <Compile Include="Services\IDeviceService.cs" />
     <Compile Include="Services\ILanguageService.cs" />
+    <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\LanguageService.cs" />
+    <Compile Include="Services\OrderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -120,6 +148,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504281415004_InitDb280415.resx">
       <DependentUpon>201504281415004_InitDb280415.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505020858440_InitDb020515.resx">
+      <DependentUpon>201505020858440_InitDb020515.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505020941481_InitDb0205151.resx">
+      <DependentUpon>201505020941481_InitDb0205151.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505021000396_InitDb0205152.resx">
+      <DependentUpon>201505021000396_InitDb0205152.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505021028091_InitDb0205153.resx">
+      <DependentUpon>201505021028091_InitDb0205153.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505021618561_InitDb0205154.resx">
+      <DependentUpon>201505021618561_InitDb0205154.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505021639273_InitDb0205155.resx">
+      <DependentUpon>201505021639273_InitDb0205155.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

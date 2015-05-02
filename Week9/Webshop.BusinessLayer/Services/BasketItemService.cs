@@ -10,9 +10,9 @@ namespace Webshop.BusinessLayer.Services
 {
     public class BasketItemService : Webshop.BusinessLayer.Services.IBasketItemService
     {
-        private BasketItemRepository BasketItemRepo = null;
+        private IBasketItemRepository BasketItemRepo = null;
 
-        public BasketItemService(BasketItemRepository basketItemRepository)
+        public BasketItemService(IBasketItemRepository basketItemRepository)
         {
             this.BasketItemRepo = basketItemRepository;
         }
@@ -32,6 +32,11 @@ namespace Webshop.BusinessLayer.Services
             return BasketItemRepo.GetByUser(user);
         }
 
+        public IEnumerable<BasketItem> BasketItemsByVisitorGUID(String visitorGUID)
+        {
+            return BasketItemRepo.GetByVisitorGUID(visitorGUID);
+        }
+
         public BasketItem AddBasketItem(BasketItem basketItem)
         {
             return BasketItemRepo.Insert(basketItem);
@@ -40,6 +45,16 @@ namespace Webshop.BusinessLayer.Services
         public void UpdateBasketItem(BasketItem basketItem)
         {
             BasketItemRepo.Update(basketItem);
+        }
+
+        public void UpdateBasketItemUser(BasketItem basketItem)
+        {
+            BasketItemRepo.UpdateUser(basketItem);
+        }
+
+        public void DeleteBasketItem(int id)
+        {
+            BasketItemRepo.Delete(id);
         }
     }
 }

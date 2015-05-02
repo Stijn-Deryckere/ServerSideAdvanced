@@ -22,7 +22,7 @@
             <td>
                 @using (Html.BeginForm("Index", "Basket", FormMethod.Post))
                 {
-                    <input type="hidden" name="id" value="@item.NewDevice.ID" />
+                    <input type="hidden" name="id" value="@item.ID" />
                     <input type="text" name="amount" value="@item.Amount" />
                     <input type="submit" class="btn btn-info" value="Wijzigen" />
                 }

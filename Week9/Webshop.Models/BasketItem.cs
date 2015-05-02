@@ -17,8 +17,8 @@ namespace Webshop.Models
         public int Amount { get; set; }
         [Required]
         public Device NewDevice { get; set; }
-        [Required]
         public ApplicationUser NewUser { get; set; }
+        public String visitorGUID { get; set; }
         [Required]
         public double RentingPrice { get; set; }
     }

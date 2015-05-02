@@ -10,9 +10,9 @@ namespace Webshop.BusinessLayer.Services
 {
     public class ApplicationUserService : Webshop.BusinessLayer.Services.IApplicationUserService
     {
-        private ApplicationUserRepository ApplicatonUserRepo = null;
+        private IApplicationUserRepository ApplicatonUserRepo = null;
 
-        public ApplicationUserService(ApplicationUserRepository applicationUserRepo)
+        public ApplicationUserService(IApplicationUserRepository applicationUserRepo)
         {
             this.ApplicatonUserRepo = applicationUserRepo;
         }
@@ -20,6 +20,11 @@ namespace Webshop.BusinessLayer.Services
         public ApplicationUser ApplicationUserByName(String name)
         {
             return this.ApplicatonUserRepo.GetByName(name);
+        }
+
+        public void UpdateApplicationUser(ApplicationUser user)
+        {
+            this.ApplicatonUserRepo.Update(user);
         }
     }
 }

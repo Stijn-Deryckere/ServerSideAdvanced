@@ -25,8 +25,5 @@
         </ul>
         <a class="btn btn-info" href="/Catalog/">Back to list</a>
     </aside>
-    @if (User.Identity.IsAuthenticated)
-    {
-        @Html.Partial("RentPartial", Model.NewBasketItem)
-    }
+    @Html.Partial("RentPartial", Model.NewBasketItem)
 </article>

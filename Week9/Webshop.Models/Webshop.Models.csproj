@@ -59,7 +59,10 @@
     <Compile Include="BasketItem.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Framework.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderLine.cs" />
     <Compile Include="OS.cs" />
+    <Compile Include="PresentationModels\ApplicationUserBasketItemPM.cs" />
     <Compile Include="PresentationModels\BasketItemTotalPricePM.cs" />
     <Compile Include="PresentationModels\DeviceBasketItemPM.cs" />
     <Compile Include="PresentationModels\DevicePM.cs" />
