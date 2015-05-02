@@ -24,12 +24,14 @@ namespace Webshop
             container.RegisterType<IApplicationUserRepository, ApplicationUserRepository>(new PerRequestLifetimeManager());
             container.RegisterType<IGenericRepository<AvailableCulture>, GenericRepository<AvailableCulture>>(new PerRequestLifetimeManager());
             container.RegisterType<IOrderRepository, OrderRepository>(new PerRequestLifetimeManager());
+            container.RegisterType<IGenericRepository<FormTopic>, GenericRepository<FormTopic>>(new PerRequestLifetimeManager());
 
             container.RegisterType<IDeviceService, DeviceService>(new PerRequestLifetimeManager());
             container.RegisterType<IBasketItemService, BasketItemService>(new PerRequestLifetimeManager());
             container.RegisterType<IApplicationUserService, ApplicationUserService>(new PerRequestLifetimeManager());
             container.RegisterType<ILanguageService, LanguageService>(new PerRequestLifetimeManager());
             container.RegisterType<IOrderService, OrderService>(new PerRequestLifetimeManager());
+            container.RegisterType<IFormService, FormService>(new PerRequestLifetimeManager());
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers

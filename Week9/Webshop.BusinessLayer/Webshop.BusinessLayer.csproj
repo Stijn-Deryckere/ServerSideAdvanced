@@ -54,6 +54,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ServiceBus">
+      <HintPath>..\packages\WindowsAzure.ServiceBus.2.6.6\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
@@ -68,6 +71,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
@@ -110,6 +115,14 @@
     <Compile Include="Migrations\201505021639273_InitDb0205155.Designer.cs">
       <DependentUpon>201505021639273_InitDb0205155.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505021954525_InitDb0205156.cs" />
+    <Compile Include="Migrations\201505021954525_InitDb0205156.Designer.cs">
+      <DependentUpon>201505021954525_InitDb0205156.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505021956293_InitDb0205157.cs" />
+    <Compile Include="Migrations\201505021956293_InitDb0205157.Designer.cs">
+      <DependentUpon>201505021956293_InitDb0205157.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
@@ -125,9 +138,11 @@
     <Compile Include="Services\ApplicationUserService.cs" />
     <Compile Include="Services\BasketItemService.cs" />
     <Compile Include="Services\DeviceService.cs" />
+    <Compile Include="Services\FormService.cs" />
     <Compile Include="Services\IApplicationUserService.cs" />
     <Compile Include="Services\IBasketItemService.cs" />
     <Compile Include="Services\IDeviceService.cs" />
+    <Compile Include="Services\IFormService.cs" />
     <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\LanguageService.cs" />
@@ -166,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505021639273_InitDb0205155.resx">
       <DependentUpon>201505021639273_InitDb0205155.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505021954525_InitDb0205156.resx">
+      <DependentUpon>201505021954525_InitDb0205156.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505021956293_InitDb0205157.resx">
+      <DependentUpon>201505021956293_InitDb0205157.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

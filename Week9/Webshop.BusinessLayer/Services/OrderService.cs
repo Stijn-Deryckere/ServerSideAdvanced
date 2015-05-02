@@ -86,5 +86,10 @@ namespace Webshop.BusinessLayer.Services
 
             return order;
         }
+
+        public Order OrderByID(int id)
+        {
+            return this.OrderRepo.GetByID(id);
+        }
     }
 }

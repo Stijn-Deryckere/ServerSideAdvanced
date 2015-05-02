@@ -20,7 +20,11 @@ namespace Webshop.BusinessLayer.Migrations
 
         protected override void Seed(WebshopContext context)
         {
-            /*AvailableCulture availableCulture1 = new AvailableCulture()
+            /*FormTopic formTopic = new FormTopic { Name = "Question" };
+            FormTopic formTopic1 = new FormTopic { Name = "Problem" };
+            context.FormTopics.Add(formTopic);
+            context.FormTopics.Add(formTopic1);
+            AvailableCulture availableCulture1 = new AvailableCulture()
             {
                 Name = "English",
                 Code = "en-US"

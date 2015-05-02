@@ -58,6 +58,7 @@
     <Compile Include="AvailableCulture.cs" />
     <Compile Include="BasketItem.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="Form.cs" />
     <Compile Include="Framework.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderLine.cs" />
@@ -66,7 +67,9 @@
     <Compile Include="PresentationModels\BasketItemTotalPricePM.cs" />
     <Compile Include="PresentationModels\DeviceBasketItemPM.cs" />
     <Compile Include="PresentationModels\DevicePM.cs" />
+    <Compile Include="PresentationModels\FormPM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormTopic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

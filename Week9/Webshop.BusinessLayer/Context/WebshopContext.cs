@@ -23,5 +23,7 @@ namespace Webshop.BusinessLayer.Context
         public DbSet<AvailableCulture> AvailableCultures { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Form> Forms { get; set; }
+        public DbSet<FormTopic> FormTopics { get; set; }
     }
 }

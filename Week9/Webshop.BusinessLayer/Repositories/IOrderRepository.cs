@@ -4,6 +4,7 @@ namespace Webshop.BusinessLayer.Repositories
     public interface IOrderRepository
     {
         System.Collections.Generic.IEnumerable<Webshop.Models.Order> GetByApplicationUser(Webshop.Models.ApplicationUser user);
+        Webshop.Models.Order GetByID(object id);
         Webshop.Models.Order Insert(Webshop.Models.Order entity);
     }
 }

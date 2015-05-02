@@ -18,6 +18,11 @@ namespace Webshop.BusinessLayer.Repositories
             :base(context)
         { }
 
+        public override Order GetByID(object id)
+        {
+            return this.context.Orders.Include(u => u.NewUser).Include(o => o.NewOrderLines).Where(o => o.ID == (int)id).SingleOrDefault<Order>();
+        }
+
         public override Order Insert(Order entity)
         {
             this.context.Entry<ApplicationUser>(entity.NewUser).State = System.Data.Entity.EntityState.Unchanged;
