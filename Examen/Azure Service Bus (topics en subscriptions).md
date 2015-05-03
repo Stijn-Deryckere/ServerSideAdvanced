@@ -116,7 +116,7 @@ if(!namespaceManager.SubscriptionExists("websitemessages", "Question"))
 ## Stap 8: Berichten verzenden naar een Topic
 
 * Maak een TopicClient aan. 
-* Maak een BrokeredMessage aan en stel de juiste Properties in. 
+* Maak een BrokeredMessage aan en stel de juiste Properties in. Deze **Properties** zorgen ervoor dat we hier later op kunnen filteren. 
 * Verzendt het BrokeredMessage naar het Topic.
 
 ```
@@ -131,3 +131,65 @@ message.Properties["TopicID"] = form.NewFormTopic.ID;
 topicClient.Send(message);
 ```
 
+## Stap 9: Aanmaken van WebJobs die berichten zullen uitlezen
+
+* Maak voor elke **Subscription** een **consoleapplicatie** aan die de berichten binnen die subscription zal uitlezen.
+* Voorzie in de **App.config** van deze consoleapplicaties een referentie naar de ConnectionString in de **<appSettings>**.
+
+```
+<appSettings>
+	<add key="Microsoft.ServiceBus.ConnectionString" value="Endpoint=sb://iotshop.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=nftcZbmuxO+qqHa9APjqskij3jNjhbff/To40+NRmoU=" />
+</appSettings>
+```
+
+### Stap 9.1: Schrijven klasse die berichten uit subscription zal verwerken
+
+* De juiste **Repositories** en **Services** voorzien.
+* Connectie maken met de **SubscriptionClient** via de *ConnectionString*.
+* De juiste callback-opties configureren voor de berichten via **OnMessageOptions**.
+* Berichten in de subscription opvangen en verwerken. 
+* Berichten in de subscription handmatig verwijderen, indien er gebruik gemaakt wordt van **PeekLock**.
+* Fouten opvangen.
+
+De code hieronder toont een voorbeeld van PeekLock:
+
+```
+//Context aanmaken.
+WebshopContext context = new WebshopContext();
+IGenericRepository<FormTopic> formTopicRepo = new GenericRepository<FormTopic>(context);
+IFormRepository formRepo = new FormRepository(context);
+IFormService formServ = new FormService(formTopicRepo, formRepo);
+
+//Connectie maken en client opvragen.
+String connectionString = CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
+SubscriptionClient client = SubscriptionClient.CreateFromConnectionString(connectionString, "websitemessages", "Question");
+
+//Voorbeeld van de PeekLock receive mode.
+
+//Callback-opties configureren
+OnMessageOptions options = new OnMessageOptions();
+options.AutoComplete = false;
+options.AutoRenewTimeout = TimeSpan.FromMinutes(1);
+
+//Berichten in de subscription opvangen.
+client.OnMessage((message) =>
+{
+	try
+    {
+    	//Bericht verwerken
+        Form form = message.GetBody<Form>();
+
+        //Bericht opslaan in de database
+        formServ.SaveForm(form);
+                    
+        //Bericht verwijderen uit subscription
+        message.Complete();
+    }
+
+    catch(Exception ex)
+    {
+    	//Toont aan dat er een probleem is, we unlocken het bericht in de subscription.
+        message.Abandon();
+    }
+}, options);
+```

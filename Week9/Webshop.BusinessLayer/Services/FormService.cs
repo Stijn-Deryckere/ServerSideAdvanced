@@ -14,10 +14,12 @@ namespace Webshop.BusinessLayer.Services
     public class FormService : Webshop.BusinessLayer.Services.IFormService
     {
         private IGenericRepository<FormTopic> FormTopicRepo = null;
+        private IFormRepository FormRepo = null;
 
-        public FormService(IGenericRepository<FormTopic> formTopicRepo)
+        public FormService(IGenericRepository<FormTopic> formTopicRepo, IFormRepository formRepo)
         {
             this.FormTopicRepo = formTopicRepo;
+            this.FormRepo = formRepo;
         }
 
         /*
@@ -60,7 +62,7 @@ namespace Webshop.BusinessLayer.Services
             }
 
             //Subscription aanmaken die berichten met als topic "Problem" accepteert
-            SqlFilter problemFiter = new SqlFilter("TopicID = 1");
+            SqlFilter problemFiter = new SqlFilter("TopicID = 2");
 
             if (!namespaceManager.SubscriptionExists("websitemessages", "Problem"))
             {
@@ -68,7 +70,7 @@ namespace Webshop.BusinessLayer.Services
             }
 
             //Subscription aanmaken die berichten met als topic "Question" accepteert
-            SqlFilter questionFilter = new SqlFilter("TopicID = 2");
+            SqlFilter questionFilter = new SqlFilter("TopicID = 1");
 
             if(!namespaceManager.SubscriptionExists("websitemessages", "Question"))
             {
@@ -86,6 +88,11 @@ namespace Webshop.BusinessLayer.Services
             topicClient.Send(message);
 
             return form;
+        }
+
+        public Form SaveForm(Form form)
+        {
+            return this.FormRepo.Insert(form);
         }
     }
 }

@@ -30,16 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -87,51 +91,17 @@
   <ItemGroup>
     <Compile Include="Calculations\TotalPriceCalculator.cs" />
     <Compile Include="Context\WebshopContext.cs" />
-    <Compile Include="Migrations\201504281415004_InitDb280415.cs" />
-    <Compile Include="Migrations\201504281415004_InitDb280415.Designer.cs">
-      <DependentUpon>201504281415004_InitDb280415.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505020858440_InitDb020515.cs" />
-    <Compile Include="Migrations\201505020858440_InitDb020515.Designer.cs">
-      <DependentUpon>201505020858440_InitDb020515.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505020941481_InitDb0205151.cs" />
-    <Compile Include="Migrations\201505020941481_InitDb0205151.Designer.cs">
-      <DependentUpon>201505020941481_InitDb0205151.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505021000396_InitDb0205152.cs" />
-    <Compile Include="Migrations\201505021000396_InitDb0205152.Designer.cs">
-      <DependentUpon>201505021000396_InitDb0205152.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505021028091_InitDb0205153.cs" />
-    <Compile Include="Migrations\201505021028091_InitDb0205153.Designer.cs">
-      <DependentUpon>201505021028091_InitDb0205153.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505021618561_InitDb0205154.cs" />
-    <Compile Include="Migrations\201505021618561_InitDb0205154.Designer.cs">
-      <DependentUpon>201505021618561_InitDb0205154.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505021639273_InitDb0205155.cs" />
-    <Compile Include="Migrations\201505021639273_InitDb0205155.Designer.cs">
-      <DependentUpon>201505021639273_InitDb0205155.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505021954525_InitDb0205156.cs" />
-    <Compile Include="Migrations\201505021954525_InitDb0205156.Designer.cs">
-      <DependentUpon>201505021954525_InitDb0205156.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505021956293_InitDb0205157.cs" />
-    <Compile Include="Migrations\201505021956293_InitDb0205157.Designer.cs">
-      <DependentUpon>201505021956293_InitDb0205157.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\BasketItemRepository.cs" />
     <Compile Include="Repositories\DeviceRepository.cs" />
+    <Compile Include="Repositories\FormRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IApplicationUserRepository.cs" />
     <Compile Include="Repositories\IBasketItemRepository.cs" />
     <Compile Include="Repositories\IDeviceRepository.cs" />
+    <Compile Include="Repositories\IFormRepository.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="Repositories\IOrderRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
@@ -159,35 +129,6 @@
       <Project>{18db8ce8-c43d-4f8a-95bc-fc82c39f2843}</Project>
       <Name>Webshop.Models</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504281415004_InitDb280415.resx">
-      <DependentUpon>201504281415004_InitDb280415.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505020858440_InitDb020515.resx">
-      <DependentUpon>201505020858440_InitDb020515.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505020941481_InitDb0205151.resx">
-      <DependentUpon>201505020941481_InitDb0205151.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505021000396_InitDb0205152.resx">
-      <DependentUpon>201505021000396_InitDb0205152.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505021028091_InitDb0205153.resx">
-      <DependentUpon>201505021028091_InitDb0205153.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505021618561_InitDb0205154.resx">
-      <DependentUpon>201505021618561_InitDb0205154.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505021639273_InitDb0205155.resx">
-      <DependentUpon>201505021639273_InitDb0205155.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505021954525_InitDb0205156.resx">
-      <DependentUpon>201505021954525_InitDb0205156.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505021956293_InitDb0205157.resx">
-      <DependentUpon>201505021956293_InitDb0205157.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

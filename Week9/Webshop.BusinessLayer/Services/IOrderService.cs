@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Webshop.BusinessLayer.Services
 {
-    pubic interface IOrderService
+    public interface IOrderService
     {
         Webshop.Models.Order AddOrder(Webshop.Models.Order order);
         Webshop.Models.Order GenerateOrder(Webshop.Models.ApplicationUser user, System.Collections.Generic.List<Webshop.Models.BasketItem> basketItems, double totalPrice);

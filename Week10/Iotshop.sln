@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iotshop", "Iotshop\Iotshop.csproj", "{2F58F67C-EF4F-4816-9BC1-C8B5C54CB6CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iotshop.Models", "Iotshop.Models\Iotshop.Models.csproj", "{23AF11C3-843B-4030-B120-2F48394B0336}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iotshop.QueueWebJob", "Iotshop.QueueWebJob\Iotshop.QueueWebJob.csproj", "{3915C691-B0EA-4887-A906-B7E764041172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iotshop.SubscriptionQuestion", "Iotshop.SubscriptionQuestion\Iotshop.SubscriptionQuestion.csproj", "{00618AB3-26C1-4267-8A2B-247DE2A40E01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iotshop.BusinessLayer", "Iotshop.BusinessLayer\Iotshop.BusinessLayer.csproj", "{3F28BA2D-B78B-4E5C-B28F-6008F11DDA5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F58F67C-EF4F-4816-9BC1-C8B5C54CB6CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F58F67C-EF4F-4816-9BC1-C8B5C54CB6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F58F67C-EF4F-4816-9BC1-C8B5C54CB6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F58F67C-EF4F-4816-9BC1-C8B5C54CB6CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23AF11C3-843B-4030-B120-2F48394B0336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23AF11C3-843B-4030-B120-2F48394B0336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23AF11C3-843B-4030-B120-2F48394B0336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23AF11C3-843B-4030-B120-2F48394B0336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3915C691-B0EA-4887-A906-B7E764041172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3915C691-B0EA-4887-A906-B7E764041172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3915C691-B0EA-4887-A906-B7E764041172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3915C691-B0EA-4887-A906-B7E764041172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00618AB3-26C1-4267-8A2B-247DE2A40E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00618AB3-26C1-4267-8A2B-247DE2A40E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00618AB3-26C1-4267-8A2B-247DE2A40E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00618AB3-26C1-4267-8A2B-247DE2A40E01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F28BA2D-B78B-4E5C-B28F-6008F11DDA5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F28BA2D-B78B-4E5C-B28F-6008F11DDA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F28BA2D-B78B-4E5C-B28F-6008F11DDA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F28BA2D-B78B-4E5C-B28F-6008F11DDA5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

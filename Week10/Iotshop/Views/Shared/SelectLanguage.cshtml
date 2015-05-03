@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Iotshop.Models.AvailableCulture>
+
+@using (Html.BeginForm("SelectLanguage", "Home", FormMethod.Post, new { @class = "form" }))
+{
+    <p>Select your language:</p>
+    <select name="language" class="form-control">
+        @foreach (var item in Model)
+        {
+            if(item.ID.ToString() == ViewBag.Selected)
+            {
+                <option id="@item.ID" value="@item.ID" selected>@item.Name</option>
+            }
+            else
+            {
+                <option id="@item.ID" value="@item.ID">@item.Name</option>
+            }
+
+        }
+    </select>
+    <br />
+    <input type="submit" value="Instellen" class="btn btn-info" />
+}

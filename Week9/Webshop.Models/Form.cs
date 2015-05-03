@@ -19,7 +19,6 @@ namespace Webshop.Models
         [DisplayName("Order")]
         public Order NewOrder { get; set; }
         [DisplayName("Topic")]
-        [Required]
         public FormTopic NewFormTopic { get; set; }
         [Required]
         public String Description { get; set; }

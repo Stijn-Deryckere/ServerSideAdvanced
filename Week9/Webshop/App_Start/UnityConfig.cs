@@ -25,6 +25,7 @@ namespace Webshop
             container.RegisterType<IGenericRepository<AvailableCulture>, GenericRepository<AvailableCulture>>(new PerRequestLifetimeManager());
             container.RegisterType<IOrderRepository, OrderRepository>(new PerRequestLifetimeManager());
             container.RegisterType<IGenericRepository<FormTopic>, GenericRepository<FormTopic>>(new PerRequestLifetimeManager());
+            container.RegisterType<IFormRepository, FormRepository>(new PerRequestLifetimeManager());
 
             container.RegisterType<IDeviceService, DeviceService>(new PerRequestLifetimeManager());
             container.RegisterType<IBasketItemService, BasketItemService>(new PerRequestLifetimeManager());

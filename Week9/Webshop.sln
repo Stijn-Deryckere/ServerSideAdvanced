@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.Models", "Webshop.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.QueueWebJob", "Webshop.QueueWebJob\Webshop.QueueWebJob.csproj", "{4DEFE2A7-0A0B-45E8-A046-2B4930910186}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.SubscriptionQuestion", "Webshop.SubscriptionQuestion\Webshop.SubscriptionQuestion.csproj", "{77AC1BEB-0BDE-4F18-96D8-C58A6547DA1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4DEFE2A7-0A0B-45E8-A046-2B4930910186}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DEFE2A7-0A0B-45E8-A046-2B4930910186}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DEFE2A7-0A0B-45E8-A046-2B4930910186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77AC1BEB-0BDE-4F18-96D8-C58A6547DA1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77AC1BEB-0BDE-4F18-96D8-C58A6547DA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77AC1BEB-0BDE-4F18-96D8-C58A6547DA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77AC1BEB-0BDE-4F18-96D8-C58A6547DA1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

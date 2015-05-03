@@ -1,0 +1,43 @@
+﻿@model Iotshop.Models.PresentationModels.FormPM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@using (Html.BeginForm("Index", "Form", FormMethod.Post, new { @class = "form" }))
+{
+    <h2>Questions or problems</h2>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewForm.Name)
+        @Html.TextBoxFor(m => m.NewForm.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewForm.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewForm.Email)
+        @Html.TextBoxFor(m => m.NewForm.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewForm.Email)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewForm.NewFormTopic)
+        @Html.DropDownListFor(m => m.NewFormTopicsID, Model.NewFormTopics, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewForm.NewFormTopic)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewForm.NewOrder)
+        @Html.DropDownListFor(m => m.NewOrdersID, Model.NewOrders, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewForm.NewOrder)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewForm.Description)
+        @Html.TextBoxFor(m => m.NewForm.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewForm.Description)
+    </div>
+    
+    <input type="submit" value="Submit" class="btn btn-success" />
+}
