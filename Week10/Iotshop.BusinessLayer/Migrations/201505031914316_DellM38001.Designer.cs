@@ -7,13 +7,13 @@ namespace Iotshop.BusinessLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitDb : IMigrationMetadata
+    public sealed partial class DellM38001 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitDb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DellM38001));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505031739441_InitDb"; }
+            get { return "201505031914316_DellM38001"; }
         }
         
         string IMigrationMetadata.Source

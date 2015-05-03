@@ -11,9 +11,7 @@ namespace Iotshop.Models
     {
         [Required]
         public int ID { get; set; }
-        [Required]
         public List<OrderLine> NewOrderLines { get; set; }
-        [Required]
         public ApplicationUser NewUser { get; set; }
         [Required]
         public DateTime Timestamp { get; set; }

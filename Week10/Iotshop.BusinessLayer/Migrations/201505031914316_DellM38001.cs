@@ -3,7 +3,7 @@ namespace Iotshop.BusinessLayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDb : DbMigration
+    public partial class DellM38001 : DbMigration
     {
         public override void Up()
         {
@@ -164,10 +164,10 @@ namespace Iotshop.BusinessLayer.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Timestamp = c.DateTime(nullable: false),
                         TotalPrice = c.Double(nullable: false),
-                        NewUser_Id = c.String(nullable: false, maxLength: 128),
+                        NewUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.AspNetUsers", t => t.NewUser_Id, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.NewUser_Id)
                 .Index(t => t.NewUser_Id);
             
             CreateTable(

@@ -56,19 +56,8 @@ namespace Iotshop.SubscriptionQuestion
                     Form tempForm = message.GetBody<Form>();
                     Console.WriteLine(tempForm.Description);
 
-                    Form form = new Form()
-                    {
-                        NewFormTopic = formServ.FormTopicByID(tempForm.NewFormTopic.ID),
-                        Description = tempForm.Description,
-                        Email = tempForm.Email,
-                        Name = tempForm.Name
-                    };
-
-                    if (tempForm.NewOrder != null)
-                        form.NewOrder = orderServ.OrderByID(tempForm.NewOrder.ID);
-
                     //Bericht opslaan in de database
-                    formServ.SaveForm(form);
+                    formServ.SaveForm(tempForm);
 
                     //Bericht verwijderen uit subscription
                     message.Complete();
