@@ -12,7 +12,7 @@ namespace Iotshop.BusinessLayer.Context
     public class IotshopContext : IdentityDbContext<ApplicationUser>
     {
         public IotshopContext()
-            :base("IotshopContext", throwIfV1Schema: false)
+            :base("DefaultConnection", throwIfV1Schema: false)
         {
 
         }
