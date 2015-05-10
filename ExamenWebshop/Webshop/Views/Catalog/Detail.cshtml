@@ -1,0 +1,48 @@
+﻿@model Webshop.Models.Models.Device
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div class="product-detail">
+    <h2>@Model.Name.Split('-')[0]</h2>
+    <img src="~/Images/@Model.Picture" width="210" height="140"/>
+    <aside>
+        <p class="bolt">Model</p>
+        <p>@Model.Name</p>
+
+        <p class="bolt">Huur mij voor</p>
+        <p>@Model.RentPrice</p>
+
+        <p class="bolt">Stock te verhuren</p>
+        <p>@Model.Stock</p>
+
+        <p class="bolt">Besturingssystemen</p>
+        <ul>
+            @if(Model.DeviceOSs.Count() == 0)
+            {
+                <li>None</li>
+            }
+            
+            @foreach(var item in Model.DeviceOSs)
+            {
+                <li>@item.Name</li>
+            }
+        </ul>
+
+        <p class="bolt">Frameworks</p>
+        <ul>
+            @if(Model.DeviceFrameworks.Count() == 0)
+            {
+                <li>None</li>
+            }
+            
+            @foreach(var item in Model.DeviceFrameworks)
+            {
+                <li>@item.Name</li>
+            }
+        </ul>
+
+        <a class="btn btn-info" href="/Catalog/Index">Back to list</a>
+    </aside>
+</div>

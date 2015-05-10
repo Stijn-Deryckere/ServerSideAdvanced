@@ -1,0 +1,65 @@
+private void AddRoles(IotshopContext context)
+        {
+            String adminRole = "Administrator";
+            String userRole = "User";
+            IdentityResult roleResult;
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            if (!roleManager.RoleExists(adminRole))
+                roleResult = roleManager.Create(new IdentityRole(adminRole));
+            if (!roleManager.RoleExists(userRole))
+                roleResult = roleManager.Create(new IdentityRole(userRole));
+            if (!context.Users.Any(u => u.Email.Equals("dieter.de.preeter@howest.be")))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser()
+                {
+                    Name = "De Preester",
+                    Firstname = "Dieter",
+                    Email = "dieter.de.preester@howest.be",
+                    UserName = "dieter.de.preester@howest.be",
+                    Address = "Graaf Karel De Goedelaan 1",
+                    City = "Kortrijk",
+                    Country = "Belgium",
+                    Zipcode = "8500"
+                };
+                manager.Create(user, "-Password1");
+                manager.AddToRole(user.Id, adminRole);
+            }
+            if (!context.Users.Any(u => u.Email.Equals("kristof@kristofcolpaert.com")))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser()
+                {
+                    Name = "Colpaert",
+                    Firstname = "Kristof",
+                    Email = "kristof@kristofcolpaert.com",
+                    UserName = "kristof@kristofcolpaert.com",
+                    Address = "Zwalmkouter 12",
+                    City = "Erembodegem",
+                    Country = "Belgium",
+                    Zipcode = "9320"
+                };
+                manager.Create(user, "-Password1");
+                manager.AddToRole(user.Id, adminRole);
+            }
+            if (!context.Users.Any(u => u.Email.Equals("rodric.degroote@student.howest.be")))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser()
+                {
+                    Name = "Degroote",
+                    Firstname = "Rodric",
+                    Email = "rodric.degroote@student.howest.be",
+                    UserName = "rodric.degroote@student.howest.be",
+                    Address = "De Patine 47",
+                    City = "Zonnebeke",
+                    Country = "Belgium",
+                    Zipcode = "8980"
+                };
+                manager.Create(user, "-Password1");
+                manager.AddToRole(user.Id, userRole);
+            }
+        }

@@ -1,0 +1,69 @@
+﻿@model Webshop.Models.PresentationModels.DevicePM
+
+@{
+    ViewBag.Title = "Add";
+}
+
+@using (Html.BeginForm("Add", "Catalog", FormMethod.Post, new { @class = "form", @enctype = "multipart/form-data" }))
+{
+    <h3>Algemeen</h3>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.Name)
+        @Html.TextBoxFor(m => m.NewDevice.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.Description)
+        @Html.TextBoxFor(m => m.NewDevice.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.Description)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.PurchasePrice)
+        @Html.TextBoxFor(m => m.NewDevice.PurchasePrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.PurchasePrice)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.RentPrice)
+        @Html.TextBoxFor(m => m.NewDevice.RentPrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.RentPrice)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.Stock)
+        @Html.TextBoxFor(m => m.NewDevice.Stock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewDevice.Stock)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.Picture)
+        <input type="file" name="NewPicture" />
+    </div>
+
+    <h3>Software</h3>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.DeviceOSs)
+        <select multiple class="form-control" name="SelectedOSs">
+            @foreach(var item in Model.NewDevice.DeviceOSs)
+            {
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewDevice.DeviceFrameworks)
+        <select multiple class="form-control" name="SelectedFrameworks">
+            @foreach (var item in Model.NewDevice.DeviceFrameworks)
+            {
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
+    </div>
+    
+    <input type="submit" value="Toevoegen" class="btn btn-success"/>
+}

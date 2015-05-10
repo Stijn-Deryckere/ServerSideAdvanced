@@ -72,3 +72,38 @@ BrokeredMessage message = new BrokeredMessage(form);
 message.Properties["TopicID"] = form.NewFormTopic.ID;
 client.send(message);
 ```
+
+## Stap 7: Berichten van de queue opvragen
+
+* Maak een QueueClient aan.
+* Er is een mogelijkheid tot het meegeven van opties.
+	* Door AutoComplete op true te zetten, activeren we ReceiveAndDelete.
+	* AutoRenewTimeout geeft aan na hoeveel tijd een bericht opnieuw unlocked mag worden.
+
+```
+String connectionString = CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
+QueueClient client = QueueClient.CreateFromConnectionString(connectionString, "IOTQueue");
+
+OnMessageOptions options = new OnMessageOptions();
+options.AutoComplete = false;
+options.AutoRenewTimeout = TimeSpan.FromMinutes(1);
+```
+
+Vervolgens kunnen we als volgt wachten op berichten:
+
+```
+Client.OnMessage((message) => {
+	try
+	{
+		Object object = message.GetBody<Object>();
+		Console.WriteLine(message.Properties["TopicID"]);
+
+		message.Complete();
+	}
+
+	catch(Exception ex)
+	{
+		message.Abandon();
+	}
+}, options);
+```

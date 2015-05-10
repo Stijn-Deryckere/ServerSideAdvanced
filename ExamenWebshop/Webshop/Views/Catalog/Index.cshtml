@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Webshop.Models.Models.Device>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@for(int i = 0; i < Model.Count(); i += 3)
+{
+    <div class="row">
+        @if(Model.Count() - 1 >= i && Model.Count() - 1 >= i + 1 && Model.Count() - 1 >= i + 2)
+        {
+            <div class="product col-md-4">
+                <h2>@Model.ElementAt(i).Name</h2>
+                <p>@Model.ElementAt(i).Description</p>
+                <a href="/Catalog/Detail/@Model.ElementAt(i).ID">>> Meer info</a>
+            </div>
+
+            <div class="product col-md-4">
+                <h2>@Model.ElementAt(i + 1).Name</h2>
+                <p>@Model.ElementAt(i + 1).Description</p>
+                <a href="/Catalog/Detail/@Model.ElementAt(i + 1).ID">>> Meer info</a>
+            </div>
+
+            <div class="product col-md-4">
+                <h2>@Model.ElementAt(i + 2).Name</h2>
+                <p>@Model.ElementAt(i + 2).Description</p>
+                <a href="/Catalog/Detail/@Model.ElementAt(i + 2).ID">>> Meer info</a>
+            </div>
+        }
+        
+        @if(Model.Count() - 1 >= i && Model.Count() - 1 >= i + 1 && Model.Count() - 1 < i + 2)
+        {
+            <div class="product col-md-4">
+                <h2>@Model.ElementAt(i).Name</h2>
+                <p>@Model.ElementAt(i).Description</p>
+                <a href="/Catalog/Detail/@Model.ElementAt(i).ID">>> Meer info</a>
+            </div>
+
+            <div class="product col-md-4">
+                <h2>@Model.ElementAt(i + 1).Name</h2>
+                <p>@Model.ElementAt(i + 1).Description</p>
+                <a href="/Catalog/Detail/@Model.ElementAt(i + 1).ID">>> Meer info</a>
+            </div>
+            
+            <div class="product col-md-4"></div>
+        }
+        
+        @if (Model.Count() - 1 >= i && Model.Count() - 1 < i + 1 && Model.Count() - 1 < i + 2)
+        {
+            <div class="product col-md-4">
+                <h2>@Model.ElementAt(i).Name</h2>
+                <p>@Model.ElementAt(i).Description</p>
+                <a href="/Catalog/Detail/@Model.ElementAt(i).ID">>> Meer info</a>
+            </div>
+
+            <div class="product col-md-4"></div>
+
+            <div class="product col-md-4"></div>
+        }
+    </div>
+}
