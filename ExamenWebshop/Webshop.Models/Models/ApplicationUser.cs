@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Webshop.Models.Models
 {
+    [Serializable]
     public class ApplicationUser : IdentityUser
     {
         public String Name { get; set; }

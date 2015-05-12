@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Webshop.Models.Models
 {
+    [Serializable]
     public class OS
     {
         [Required]
@@ -14,5 +15,7 @@ namespace Webshop.Models.Models
 
         [Required]
         public String Name { get; set; }
+
+        public List<Device> Devices { get; set; }
     }
 }

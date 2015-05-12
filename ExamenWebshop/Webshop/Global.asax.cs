@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Webshop.BusinessLayer.Cache;
 
 namespace Webshop
 {
@@ -19,6 +20,7 @@ namespace Webshop
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             UnityConfig.RegisterComponents();
+            WebshopCache.Setup();
         }
     }
 }

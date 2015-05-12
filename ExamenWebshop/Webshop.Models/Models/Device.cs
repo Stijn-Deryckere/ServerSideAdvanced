@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Webshop.Models.Models
 {
+    [Serializable]
     public class Device
     {
         public int ID { get; set; }

@@ -1,15 +1,15 @@
 namespace Webshop.BusinessLayer.Migrations
 {
     using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.IO;
-using System.Linq;
-using Webshop.BusinessLayer.Context;
-using Webshop.Models.Models;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.IO;
+    using System.Linq;
+    using Webshop.BusinessLayer.Context;
+    using Webshop.Models.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Webshop.BusinessLayer.Context.ApplicationDbContext>
     {

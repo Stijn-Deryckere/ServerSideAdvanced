@@ -82,9 +82,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\BasketItem.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\Framework.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderLine.cs" />
     <Compile Include="Models\OS.cs" />
+    <Compile Include="PresentationModels\BasketItemsPM.cs" />
+    <Compile Include="PresentationModels\BasketPM.cs" />
+    <Compile Include="PresentationModels\CheckoutPM.cs" />
     <Compile Include="PresentationModels\DevicePM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

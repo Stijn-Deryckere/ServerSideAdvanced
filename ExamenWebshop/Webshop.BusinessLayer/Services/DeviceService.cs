@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Microsoft.Azure;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Webshop.BusinessLayer.Cache;
 using Webshop.BusinessLayer.Repositories;
 using Webshop.Models.Models;
 
@@ -29,7 +34,7 @@ namespace Webshop.BusinessLayer.Services
 
         public IEnumerable<Device> AllDevices()
         {
-            return this.DeviceRepo.All();
+            return GetDevicesFromCache();
         }
 
         public Device DeviceById(int id)
@@ -40,6 +45,23 @@ namespace Webshop.BusinessLayer.Services
         public Device AddDevice(Device device)
         {
             return this.DeviceRepo.Insert(device);
+        }
+
+        public List<Device> GetDevicesFromCache()
+        {
+            List<Device> devices = WebshopCache.cache.Get("Devices") as List<Device>;
+            if(devices != null)
+                return devices;
+
+            RefreshCachedDevices();
+
+            return GetDevicesFromCache();
+        }
+
+        public void RefreshCachedDevices()
+        {
+            IEnumerable<Device> devices = this.DeviceRepo.All().ToList<Device>();
+            WebshopCache.cache.Set("Devices", devices);
         }
 
         /*
@@ -77,8 +99,21 @@ namespace Webshop.BusinessLayer.Services
         public String SaveImage(HttpPostedFileBase picture)
         {
             String fileName = Path.GetFileName(picture.FileName);
-            String path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Images\\", fileName);
+
+            CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+            CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("images");
+            CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(fileName);
+
+            String path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Images\\", fileName);
             picture.SaveAs(path);
+
+            using(var fileStream = File.OpenRead(path))
+            {
+                cloudBlockBlob.UploadFromStream(fileStream);
+            }
+
+            File.Delete(path);
 
             return fileName;
         }

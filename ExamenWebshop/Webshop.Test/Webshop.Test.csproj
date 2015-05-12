@@ -92,22 +92,38 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Database\UnitTestDatabaseInitializer.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="IntegrationTests\CatalogController_Test.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Webshop.BusinessLayer\Webshop.BusinessLayer.csproj">
       <Project>{825d08e6-9947-4ebd-b095-b702d0e48b6c}</Project>
       <Name>Webshop.BusinessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Webshop.Models\Webshop.Models.csproj">
+      <Project>{f1863343-4fb7-45c7-a243-ed73838890af}</Project>
+      <Name>Webshop.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Webshop\Webshop.csproj">
       <Project>{a1eae8f0-5543-41b4-abc6-8d68ed3147e7}</Project>
       <Name>Webshop</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UnitTests\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

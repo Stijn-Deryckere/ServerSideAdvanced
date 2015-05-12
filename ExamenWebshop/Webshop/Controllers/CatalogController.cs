@@ -28,8 +28,13 @@ namespace Webshop.Controllers
         [HttpGet]
         public ActionResult Detail(int id)
         {
-            Device device = this.DeviceServ.DeviceById(id);
-            return View(device);
+            BasketPM basketPM = new BasketPM()
+            {
+                NewDevice = this.DeviceServ.DeviceById(id),
+                Amount = 0
+            };
+
+            return View(basketPM);
         }
 
         [HttpGet]
@@ -74,6 +79,7 @@ namespace Webshop.Controllers
                 devicePM.NewDevice.Picture = this.DeviceServ.SaveImage(devicePM.NewPicture);
 
                 this.DeviceServ.AddDevice(devicePM.NewDevice);
+                this.DeviceServ.RefreshCachedDevices();
             }
 
             return RedirectToAction("Index");

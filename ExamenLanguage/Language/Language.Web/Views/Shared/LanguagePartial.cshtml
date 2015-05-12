@@ -1,0 +1,13 @@
+﻿@model Language.Models.PresentationModels.AvailableCulturePM
+
+@using (Html.BeginForm("CultureChoice", "Language", FormMethod.Post))
+{
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewAvailableCulture)
+        @Html.DropDownListFor(m => m.NewAvailableCulture.ID, Model.SelectAvailableCultures, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewAvailableCulture)
+    </div>
+    
+    <input type="submit" value="@Language.Web.Properties.General.GUI.Send" class="btn btn-success"/>
+}

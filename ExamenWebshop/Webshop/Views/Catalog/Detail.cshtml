@@ -1,30 +1,30 @@
-﻿@model Webshop.Models.Models.Device
+﻿@model Webshop.Models.PresentationModels.BasketPM
 
 @{
     ViewBag.Title = "Detail";
 }
 
 <div class="product-detail">
-    <h2>@Model.Name.Split('-')[0]</h2>
-    <img src="~/Images/@Model.Picture" width="210" height="140"/>
+    <h2>@Model.NewDevice.Name.Split('-')[0]</h2>
+    <img src="https://kristofiot.blob.core.windows.net/images/@Model.NewDevice.Picture" width="210" height="140" />
     <aside>
         <p class="bolt">Model</p>
-        <p>@Model.Name</p>
+        <p>@Model.NewDevice.Name</p>
 
         <p class="bolt">Huur mij voor</p>
-        <p>@Model.RentPrice</p>
+        <p>@Model.NewDevice.RentPrice</p>
 
         <p class="bolt">Stock te verhuren</p>
-        <p>@Model.Stock</p>
+        <p>@Model.NewDevice.Stock</p>
 
         <p class="bolt">Besturingssystemen</p>
         <ul>
-            @if(Model.DeviceOSs.Count() == 0)
+            @if (Model.NewDevice.DeviceOSs.Count() == 0)
             {
                 <li>None</li>
             }
             
-            @foreach(var item in Model.DeviceOSs)
+            @foreach (var item in Model.NewDevice.DeviceOSs)
             {
                 <li>@item.Name</li>
             }
@@ -32,17 +32,33 @@
 
         <p class="bolt">Frameworks</p>
         <ul>
-            @if(Model.DeviceFrameworks.Count() == 0)
+            @if (Model.NewDevice.DeviceFrameworks.Count() == 0)
             {
                 <li>None</li>
             }
             
-            @foreach(var item in Model.DeviceFrameworks)
+            @foreach (var item in Model.NewDevice.DeviceFrameworks)
             {
                 <li>@item.Name</li>
             }
         </ul>
 
         <a class="btn btn-info" href="/Catalog/Index">Back to list</a>
+
+        @if(User.Identity.IsAuthenticated)
+        {            
+            using (Html.BeginForm("Add", "Basket", FormMethod.Post, new { @class = "form" }))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Amount)
+                    @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Amount)
+                </div>
+            
+                @Html.HiddenFor(m => m.NewDevice.ID)
+            
+                <input type="submit" value="Toevoegen" class="btn btn-success"/>
+            }
+        }
     </aside>
 </div>

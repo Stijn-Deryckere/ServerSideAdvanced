@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Language.Models.Models.Device>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@Language.Web.Properties.General.GUI.Products</h2>
+
+@foreach(var item in Model)
+{
+    <h3>@item.Name</h3>
+    <p>@item.Description</p>
+    <p><b>@Language.Web.Properties.General.GUI.JustFor @item.Price</b></p>
+}

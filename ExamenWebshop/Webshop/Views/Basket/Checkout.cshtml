@@ -1,0 +1,64 @@
+﻿@model Webshop.Models.PresentationModels.CheckoutPM
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+@using (Html.BeginForm("Checkout", "Basket", FormMethod.Post, new { @class = "form" }))
+{
+    <h3>Checkout</h3>
+    
+    <table class="table">
+        <tr>
+            <th>Product</th>
+            <th>Eenheidsprijs</th>
+            <td>Aantal</td>
+            <td>Prijs</td>
+        </tr>
+
+        @foreach (var item in Model.BasketItems)
+        {
+            double price = item.Amount * item.RentPrice;
+            <tr>
+                <td>@item.NewDevice.Name</td>
+                <td>€ @item.RentPrice</td>
+                <td>@item.Amount</td>
+                <td>€ @price</td>
+            </tr>
+        }
+    </table>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewUser.Name)
+        @Html.TextBoxFor(m => m.NewUser.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewUser.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewUser.Firstname)
+        @Html.TextBoxFor(m => m.NewUser.Firstname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewUser.Firstname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewUser.Address)
+        @Html.TextBoxFor(m => m.NewUser.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewUser.Address)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewUser.Zipcode)
+        @Html.TextBoxFor(m => m.NewUser.Zipcode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewUser.Zipcode)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewUser.City)
+        @Html.TextBoxFor(m => m.NewUser.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NewUser.City)
+    </div>
+    
+    <input type="submit" value="Bestellen" class="btn btn-success"/>
+}
+
+

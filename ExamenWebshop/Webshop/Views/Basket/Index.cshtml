@@ -1,0 +1,31 @@
+﻿@model Webshop.Models.PresentationModels.BasketItemsPM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Winkelwagen</h2>
+
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Eenheidsprijs</th>
+        <td>Aantal</td>
+        <td>Prijs</td>
+    </tr>
+
+    @foreach(var item in Model.BasketItems)
+    {
+        double price = item.Amount * item.RentPrice;
+        <tr>
+            <td>@item.NewDevice.Name</td>
+            <td>€ @item.RentPrice</td>
+            <td>@item.Amount</td>
+            <td>€ @price</td>
+        </tr>
+    }
+</table>
+<p><b>Totale prijs: € @Model.TotalPrice</b></p>
+
+<a href="/Catalog/Index" class="btn btn-info">Back to list</a>
+<a href="/Basket/Checkout" class="btn btn-success">Checkout</a>
