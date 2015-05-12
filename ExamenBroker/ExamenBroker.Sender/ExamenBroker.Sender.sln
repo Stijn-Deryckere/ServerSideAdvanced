@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamenBroker.Sender", "Exam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamenBroker.Receiver", "..\ExamenBroker.Receiver\ExamenBroker.Receiver.csproj", "{1D132E7B-2540-4EBB-90CC-D9FF013CEE40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamenBrokerTableStorageClient", "..\ExamenBrokerTableStorageClient\ExamenBrokerTableStorageClient.csproj", "{4F3266E2-312A-47DA-9D6A-E297EEB40225}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1D132E7B-2540-4EBB-90CC-D9FF013CEE40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D132E7B-2540-4EBB-90CC-D9FF013CEE40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D132E7B-2540-4EBB-90CC-D9FF013CEE40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F3266E2-312A-47DA-9D6A-E297EEB40225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F3266E2-312A-47DA-9D6A-E297EEB40225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F3266E2-312A-47DA-9D6A-E297EEB40225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F3266E2-312A-47DA-9D6A-E297EEB40225}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

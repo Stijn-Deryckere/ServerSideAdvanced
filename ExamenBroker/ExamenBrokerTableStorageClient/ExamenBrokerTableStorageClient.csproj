@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1D132E7B-2540-4EBB-90CC-D9FF013CEE40}</ProjectGuid>
+    <ProjectGuid>{4F3266E2-312A-47DA-9D6A-E297EEB40225}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExamenBroker.Receiver</RootNamespace>
-    <AssemblyName>ExamenBroker.Receiver</AssemblyName>
+    <RootNamespace>ExamenBrokerTableStorageClient</RootNamespace>
+    <AssemblyName>ExamenBrokerTableStorageClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="M2Mqtt">
-      <HintPath>..\ExamenBroker.Sender\packages\M2Mqtt.4.1\lib\net45\M2Mqtt.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ExamenBroker.Sender\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
