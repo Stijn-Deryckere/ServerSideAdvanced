@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Webshop.Models;
 using Webshop.Models.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Webshop.Controllers
 {
@@ -156,6 +157,12 @@ namespace Webshop.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                /*
+                 * Users automatisch rol toekennen
+                 */
+                UserManager.AddToRole(user.Id, "User");
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
